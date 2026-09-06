@@ -1,13 +1,13 @@
 import { create } from "zustand"
 import { applyEffects } from "../engine/effectExecutor"
 import { getNode, resolveBranch, resolveTarget } from "../engine/scenarioEngine"
-import type { Choice, GameState, Scenario } from "../engine/types"
+import type { Choice, GameState, Scenario, ScenarioRegistry } from "../engine/types"
 
 type GameStore = GameState & {
   start: (scenario: Scenario) => void
-  advanceDialogue: (scenario: Scenario) => void
-  choose: (scenario: Scenario, choice: Choice) => void
-  resolveBranches: (scenario: Scenario) => void
+  advanceDialogue: (registry: ScenarioRegistry) => void
+  choose: (registry: ScenarioRegistry, choice: Choice) => void
+  resolveBranches: (registry: ScenarioRegistry) => void
 }
 
 const initialState: GameState = { scenarioId: "", sceneId: "", nodeId: "", flags: {}, affinity: {} }
@@ -17,27 +17,27 @@ export const useGameStore = create<GameStore>((set, get) => ({
   start: (scenario) => {
     const scene = scenario.scenes[scenario.initialSceneId]
     set({ ...initialState, scenarioId: scenario.id, sceneId: scene.id, nodeId: scene.initialNodeId })
-    get().resolveBranches(scenario)
+    get().resolveBranches({ [scenario.id]: scenario })
   },
-  advanceDialogue: (scenario) => {
+  advanceDialogue: (registry) => {
     const state = get()
-    const node = getNode(scenario, state)
+    const node = getNode(registry, state)
     if (node.type !== "dialogue") return
     const changes = applyEffects(state, node.effects)
-    set({ ...changes, ...resolveTarget(state, node.next) })
-    get().resolveBranches(scenario)
+    set({ ...changes, ...resolveTarget(registry, state, node.next) })
+    get().resolveBranches(registry)
   },
-  choose: (scenario, choice) => {
+  choose: (registry, choice) => {
     const state = get()
     const changes = applyEffects(state, choice.effects)
-    set({ ...changes, ...resolveTarget(state, choice.next) })
-    get().resolveBranches(scenario)
+    set({ ...changes, ...resolveTarget(registry, state, choice.next) })
+    get().resolveBranches(registry)
   },
-  resolveBranches: (scenario) => {
+  resolveBranches: (registry) => {
     let safetyCounter = 0
-    while (getNode(scenario, get()).type === "branch") {
+    while (getNode(registry, get()).type === "branch") {
       if (safetyCounter++ > 100) throw new Error("Too many consecutive branch transitions.")
-      set(resolveBranch(scenario, get()))
+      set(resolveBranch(registry, get()))
     }
   },
 }))

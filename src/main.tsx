@@ -6,7 +6,7 @@ import { validateScenario } from "./engine/validateScenario"
 import "./styles/globals.css"
 
 for (const scenario of Object.values(scenarios)) {
-  const errors = validateScenario(scenario)
+  const errors = validateScenario(scenario, scenarios)
   if (errors.length > 0) throw new Error(`Scenario validation failed for ${scenario.id}:\n${errors.join("\n")}`)
 }
 

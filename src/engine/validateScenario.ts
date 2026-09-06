@@ -1,18 +1,33 @@
 import { characters, type Character } from "../data/characters"
-import type { NextTarget, Presentation, Scenario, StoryNode } from "./types"
+import { backgrounds, type Background } from "../data/backgrounds"
+import type { NextTarget, Presentation, Scenario, ScenarioRegistry, StoryNode } from "./types"
 
-export function validateScenario(scenario: Scenario, characterMaster: Record<string, Character> = characters): string[] {
+export function validateScenario(
+  scenario: Scenario,
+  scenarioRegistry: ScenarioRegistry,
+  characterMaster: Record<string, Character> = characters,
+  backgroundMaster: Record<string, Background> = backgrounds,
+): string[] {
   const errors: string[] = []
   const validateTarget = (target: NextTarget, sceneId: string, source: string) => {
-    const targetSceneId = target.sceneId ?? sceneId
-    const targetScene = scenario.scenes[targetSceneId]
+    const targetScenarioId = target.scenarioId ?? scenario.id
+    const targetScenario = scenarioRegistry[targetScenarioId]
+    if (!targetScenario) {
+      errors.push(`${source}: scenarioId "${targetScenarioId}" does not exist.`)
+      return
+    }
+    const targetSceneId = target.sceneId ?? (target.scenarioId ? targetScenario.initialSceneId : sceneId)
+    const targetScene = targetScenario.scenes[targetSceneId]
     if (!targetScene) {
-      errors.push(`${source}: sceneId "${targetSceneId}" does not exist.`)
+      errors.push(`${source}: sceneId "${targetSceneId}" does not exist in scenario "${targetScenarioId}".`)
     } else if (!targetScene.nodes[target.nodeId]) {
-      errors.push(`${source}: nodeId "${target.nodeId}" does not exist in scene "${targetSceneId}".`)
+      errors.push(`${source}: nodeId "${target.nodeId}" does not exist in scenario "${targetScenarioId}", scene "${targetSceneId}".`)
     }
   }
   const validatePresentation = (presentation: Presentation | undefined, source: string) => {
+    if (presentation?.backgroundId && !backgroundMaster[presentation.backgroundId]) {
+      errors.push(`${source}: backgroundId "${presentation.backgroundId}" does not exist.`)
+    }
     for (const appearance of presentation?.characters ?? []) {
       const character = characterMaster[appearance.characterId]
       if (!character) {
@@ -42,8 +57,12 @@ export function validateScenario(scenario: Scenario, characterMaster: Record<str
 
   if (!scenario.scenes[scenario.initialSceneId]) errors.push(`initialSceneId "${scenario.initialSceneId}" does not exist.`)
   Object.entries(scenario.scenes).forEach(([sceneId, scene]) => {
+    if (scene.id !== sceneId) errors.push(`${sceneId}: Scene.id must match its scene key (received "${scene.id}").`)
     if (!scene.nodes[scene.initialNodeId]) errors.push(`${sceneId}: initialNodeId "${scene.initialNodeId}" does not exist.`)
-    Object.values(scene.nodes).forEach((node) => validateNode(node, sceneId))
+    Object.entries(scene.nodes).forEach(([nodeId, node]) => {
+      if (node.id !== nodeId) errors.push(`${sceneId}.${nodeId}: StoryNode.id must match its node key (received "${node.id}").`)
+      validateNode(node, sceneId)
+    })
   })
   return errors
 }

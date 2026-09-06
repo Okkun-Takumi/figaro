@@ -15,6 +15,8 @@ export type Scenario = {
   scenes: Record<string, Scene>
 }
 
+export type ScenarioRegistry = Record<string, Scenario>
+
 export type Scene = {
   id: string
   initialNodeId: string
@@ -23,7 +25,7 @@ export type Scene = {
 
 export type StoryNode = DialogueNode | ChoiceNode | BranchNode | EndNode
 
-export type NextTarget = { sceneId?: string; nodeId: string }
+export type NextTarget = { scenarioId?: string; sceneId?: string; nodeId: string }
 
 export type Presentation = {
   backgroundId?: string
