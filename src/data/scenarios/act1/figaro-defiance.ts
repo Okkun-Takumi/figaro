@@ -4,7 +4,7 @@ const presentation = {
   backgroundId: "wedding-room",
   characters: [
     { characterId: "figaro", expressionId: "serious", position: "left" as const },
-    { characterId: "susanna", expressionId: "determined", position: "right" as const },
+    { characterId: "susanna", expressionId: "serious", position: "right" as const },
   ],
 }
 

@@ -22,11 +22,10 @@ export const characters: Record<string, Character> = {
     name: "スザンナ",
     color: "#b9829d",
     expressions: {
-      neutral: {},
-      smile: {},
-      concerned: {},
-      determined: {},
-      surprised: {},
+      neutral: { imagePath: "/characters/susanna/neutral.webp" },
+      smile: { imagePath: "/characters/susanna/smile.webp" },
+      serious: { imagePath: "/characters/susanna/serious.webp" },
+      worried: { imagePath: "/characters/susanna/worried.webp" },
     },
   },
   marcellina: {
@@ -34,10 +33,9 @@ export const characters: Record<string, Character> = {
     name: "マルチェリーナ",
     color: "#8d7394",
     expressions: {
-      neutral: {},
-      smile: {},
-      angry: {},
-      surprised: {},
+      neutral: { imagePath: "/characters/marcellina/neutral.webp" },
+      smug: { imagePath: "/characters/marcellina/smug.webp" },
+      angry: { imagePath: "/characters/marcellina/angry.webp" },
     },
   },
   bartolo: {
@@ -45,10 +43,9 @@ export const characters: Record<string, Character> = {
     name: "バルトロ",
     color: "#7b6455",
     expressions: {
-      neutral: {},
-      smile: {},
-      angry: {},
-      surprised: {},
+      neutral: { imagePath: "/characters/bartolo/neutral.webp" },
+      angry: { imagePath: "/characters/bartolo/angry.webp" },
+      smug: { imagePath: "/characters/bartolo/smug.webp" },
     },
   },
   cherubino: {
@@ -56,10 +53,10 @@ export const characters: Record<string, Character> = {
     name: "ケルビーノ",
     color: "#7e9bad",
     expressions: {
-      neutral: {},
-      smile: {},
-      angry: {},
-      surprised: {},
+      neutral: { imagePath: "/characters/cherubino/neutral.webp" },
+      flustered: { imagePath: "/characters/cherubino/flustered.webp" },
+      worried: { imagePath: "/characters/cherubino/worried.webp" },
+      surprised: { imagePath: "/characters/cherubino/surprised.webp" },
     },
   },
   count: {
@@ -67,10 +64,21 @@ export const characters: Record<string, Character> = {
     name: "伯爵",
     color: "#536f89",
     expressions: {
-      neutral: {},
-      smile: {},
-      angry: {},
-      surprised: {},
+      neutral: { imagePath: "/characters/count/neutral.webp" },
+      charming: { imagePath: "/characters/count/charming.webp" },
+      angry: { imagePath: "/characters/count/angry.webp" },
+      surprised: { imagePath: "/characters/count/surprised.webp" },
+    },
+  },
+  countess: {
+    id: "countess",
+    name: "伯爵夫人",
+    color: "#714353",
+    expressions: {
+      neutral: { imagePath: "/characters/countess/neutral.webp" },
+      sad: { imagePath: "/characters/countess/sad.webp" },
+      smile: { imagePath: "/characters/countess/smile.webp" },
+      surprised: { imagePath: "/characters/countess/surprised.webp" },
     },
   },
   basilio: {
@@ -78,10 +86,9 @@ export const characters: Record<string, Character> = {
     name: "バジリオ",
     color: "#88735f",
     expressions: {
-      neutral: {},
-      smile: {},
-      surprised: {},
-      worried: {},
+      neutral: { imagePath: "/characters/basilio/neutral.webp" },
+      smile: { imagePath: "/characters/basilio/smile.webp" },
+      surprised: { imagePath: "/characters/basilio/surprised.webp" },
     },
   },
 }

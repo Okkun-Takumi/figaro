@@ -8,6 +8,14 @@ const presentation = {
   ],
 }
 
+const flusteredPresentation = {
+  ...presentation,
+  characters: [
+    { characterId: "susanna", expressionId: "neutral", position: "left" as const },
+    { characterId: "cherubino", expressionId: "flustered", position: "right" as const },
+  ],
+}
+
 export const cherubino = {
   id: "cherubino",
   backgroundId: "manor-hallway",
@@ -31,10 +39,10 @@ export const cherubino = {
     "tease-reaction": { type: "dialogue", id: "tease-reaction", speakerId: "cherubino", text: "「笑いごとじゃないよ。伯爵様は本気で怒っていたんだ」", presentation, next: { nodeId: "cherubino-rejoin" } },
     "infatuation-reaction": { type: "dialogue", id: "infatuation-reaction", speakerId: "cherubino", text: "「好きっていうより、会うと胸が苦しくなるんだ。誰に会っても、どうしていいか分からない」", presentation, next: { nodeId: "cherubino-rejoin" } },
     "countess-reaction": { type: "dialogue", id: "countess-reaction", speakerId: "cherubino", text: "「伯爵夫人は……そんな、口に出さないでくれ！」ケルビーノは真っ赤になった。彼の憧れは、彼自身だけの一方的なものだ。", presentation, next: { nodeId: "cherubino-rejoin" } },
-    "cherubino-rejoin": { type: "dialogue", id: "cherubino-rejoin", speakerId: "cherubino", text: "「僕は自分でも変なんだ。誰かを見ると心臓が走り出すみたいで……」", presentation, next: { nodeId: "non-so-piu-title" } },
-    "non-so-piu-title": { type: "dialogue", id: "non-so-piu-title", text: "♪ Non so più cosa son, cosa faccio", presentation, next: { nodeId: "non-so-piu-explanation" } },
-    "non-so-piu-explanation": { type: "dialogue", id: "non-so-piu-explanation", text: "歌う人物：ケルビーノ。女性を見れば胸が高鳴り、自分でもどうしていいか分からない。", presentation, next: { nodeId: "non-so-piu-point" } },
-    "non-so-piu-point": { type: "dialogue", id: "non-so-piu-point", text: "ケルビーノの「恋そのものに恋しているような思春期」を表すアリアだ。特定の一人だけへの告白ではなく、彼自身が恋愛感情に振り回されている場面である。", presentation, next: { nodeId: "footsteps" } },
+    "cherubino-rejoin": { type: "dialogue", id: "cherubino-rejoin", speakerId: "cherubino", text: "「僕は自分でも変なんだ。誰かを見ると心臓が走り出すみたいで……」", presentation: flusteredPresentation, next: { nodeId: "non-so-piu-title" } },
+    "non-so-piu-title": { type: "dialogue", id: "non-so-piu-title", text: "♪ Non so più cosa son, cosa faccio", presentation: flusteredPresentation, next: { nodeId: "non-so-piu-explanation" } },
+    "non-so-piu-explanation": { type: "dialogue", id: "non-so-piu-explanation", text: "歌う人物：ケルビーノ。女性を見れば胸が高鳴り、自分でもどうしていいか分からない。", presentation: flusteredPresentation, next: { nodeId: "non-so-piu-point" } },
+    "non-so-piu-point": { type: "dialogue", id: "non-so-piu-point", text: "ケルビーノの「恋そのものに恋しているような思春期」を表すアリアだ。特定の一人だけへの告白ではなく、彼自身が恋愛感情に振り回されている場面である。", presentation: flusteredPresentation, next: { nodeId: "footsteps" } },
     "footsteps": { type: "dialogue", id: "footsteps", text: "そのとき、廊下から足音が近づいてくる。", presentation, next: { nodeId: "cherubino-alarm" } },
     "cherubino-alarm": { type: "dialogue", id: "cherubino-alarm", speakerId: "cherubino", text: "「……まずい」", presentation, next: { nodeId: "susanna-alarm" } },
     "susanna-alarm": { type: "dialogue", id: "susanna-alarm", speakerId: "susanna", text: "「何？」", presentation, next: { nodeId: "count-arrives" } },
