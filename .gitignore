@@ -1,0 +1,12 @@
+# Dependencies and generated build output
+node_modules/
+dist/
+
+# TypeScript/Vite caches
+*.tsbuildinfo
+.vite/
+
+# Local environment variables
+.env
+.env.*
+!.env.example
