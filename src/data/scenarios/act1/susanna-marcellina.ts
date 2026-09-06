@@ -10,6 +10,7 @@ const presentation = {
 
 export const susannaMarcellina = {
   id: "susanna-marcellina",
+  backgroundId: "manor-hallway",
   initialNodeId: "duel-entry",
   nodes: {
     "duel-entry": { type: "dialogue", id: "duel-entry", text: "バルトロが去ると、入れ替わるようにスザンナが廊下へ現れた。マルチェリーナは、完璧な笑顔を浮かべる。", presentation, next: { nodeId: "marcellina-greeting" } },

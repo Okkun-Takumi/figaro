@@ -7,6 +7,7 @@ const susannaPresentation = {
 
 export const countCherubino = {
   id: "count-cherubino",
+  backgroundId: "manor-hallway",
   initialNodeId: "susanna-startles",
   nodes: {
     "susanna-startles": { type: "dialogue", id: "susanna-startles", speakerId: "susanna", text: "「え？」", presentation: susannaPresentation, next: { nodeId: "cherubino-fears" } },

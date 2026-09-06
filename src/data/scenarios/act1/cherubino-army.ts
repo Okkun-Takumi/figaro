@@ -10,6 +10,7 @@ const presentation = {
 
 export const cherubinoArmy = {
   id: "cherubino-army",
+  backgroundId: "manor-hallway",
   initialNodeId: "villagers-leave",
   nodes: {
     "villagers-leave": { type: "dialogue", id: "villagers-leave", text: "村人たちが去ると、フィガロはケルビーノがすっかり落ち込んでいることに気づいた。", presentation, next: { nodeId: "figaro-asks" } },

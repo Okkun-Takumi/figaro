@@ -2,6 +2,7 @@ import type { Scene } from "../../../engine/types"
 
 export const manorHallway = {
   id: "manor-hallway",
+  backgroundId: "manor-hallway",
   initialNodeId: "hallway-entry",
   nodes: {
     "hallway-entry": {

@@ -10,6 +10,7 @@ const presentation = {
 
 export const figaroVillagers = {
   id: "figaro-villagers",
+  backgroundId: "manor-hallway",
   initialNodeId: "figaro-calls",
   nodes: {
     "figaro-calls": { type: "dialogue", id: "figaro-calls", speakerId: "figaro", text: "「伯爵様！」", presentation, next: { nodeId: "villagers-praise" } },

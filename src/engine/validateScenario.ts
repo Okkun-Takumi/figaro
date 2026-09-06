@@ -58,6 +58,9 @@ export function validateScenario(
   if (!scenario.scenes[scenario.initialSceneId]) errors.push(`initialSceneId "${scenario.initialSceneId}" does not exist.`)
   Object.entries(scenario.scenes).forEach(([sceneId, scene]) => {
     if (scene.id !== sceneId) errors.push(`${sceneId}: Scene.id must match its scene key (received "${scene.id}").`)
+    if (scene.backgroundId && !backgroundMaster[scene.backgroundId]) {
+      errors.push(`${sceneId}: backgroundId "${scene.backgroundId}" does not exist.`)
+    }
     if (!scene.nodes[scene.initialNodeId]) errors.push(`${sceneId}: initialNodeId "${scene.initialNodeId}" does not exist.`)
     Object.entries(scene.nodes).forEach(([nodeId, node]) => {
       if (node.id !== nodeId) errors.push(`${sceneId}.${nodeId}: StoryNode.id must match its node key (received "${node.id}").`)

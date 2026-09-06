@@ -11,10 +11,10 @@ export const characters: Record<string, Character> = {
     name: "フィガロ",
     color: "#d7b26d",
     expressions: {
-      neutral: {},
-      smile: {},
-      sad: {},
-      determined: {},
+      neutral: { imagePath: "/characters/figaro/neutral.webp" },
+      smile: { imagePath: "/characters/figaro/smile.webp" },
+      serious: { imagePath: "/characters/figaro/serious.webp" },
+      annoyed: { imagePath: "/characters/figaro/annoyed.webp" },
     },
   },
   susanna: {

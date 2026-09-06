@@ -10,6 +10,7 @@ const presentation = {
 
 export const cherubinoDiscovered = {
   id: "cherubino-discovered",
+  backgroundId: "manor-hallway",
   initialNodeId: "count-emerges",
   nodes: {
     "count-emerges": { type: "dialogue", id: "count-emerges", speakerId: "count", text: "「何だと？」", presentation, next: { nodeId: "basilio-startles" } },

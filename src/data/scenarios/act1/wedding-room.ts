@@ -10,6 +10,7 @@ const roomPresentation = {
 
 export const weddingRoom = {
   id: "wedding-room",
+  backgroundId: "wedding-room",
   initialNodeId: "room-entry",
   nodes: {
     "room-entry": { type: "dialogue", id: "room-entry", speakerId: "figaro", text: "五……十……二十……", presentation: roomPresentation, next: { nodeId: "figaro-measuring" } },

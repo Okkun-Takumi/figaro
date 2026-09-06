@@ -2,6 +2,7 @@ import type { Scene } from "../../../engine/types"
 
 export const arrival = {
   id: "arrival",
+  backgroundId: "manor-exterior-morning",
   initialNodeId: "morning-estate",
   nodes: {
     "morning-estate": {

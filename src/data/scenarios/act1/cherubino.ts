@@ -10,6 +10,7 @@ const presentation = {
 
 export const cherubino = {
   id: "cherubino",
+  backgroundId: "manor-hallway",
   initialNodeId: "cherubino-entry",
   nodes: {
     "cherubino-entry": { type: "dialogue", id: "cherubino-entry", speakerId: "cherubino", text: "「スザンナ、助けてくれ！」", presentation, effects: [{ type: "setFlag", key: "knowsCherubinoIsPage", value: true }], next: { nodeId: "susanna-question" } },

@@ -3,13 +3,14 @@ import type { Scene } from "../../../engine/types"
 const presentation = {
   backgroundId: "wedding-room",
   characters: [
-    { characterId: "figaro", expressionId: "determined", position: "left" as const },
+    { characterId: "figaro", expressionId: "serious", position: "left" as const },
     { characterId: "susanna", expressionId: "determined", position: "right" as const },
   ],
 }
 
 export const figaroDefiance = {
   id: "figaro-defiance",
+  backgroundId: "wedding-room",
   initialNodeId: "strategy-choice",
   nodes: {
     "strategy-choice": {

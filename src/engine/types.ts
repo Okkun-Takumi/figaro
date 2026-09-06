@@ -8,6 +8,15 @@ export type GameState = {
   affinity: Record<string, number>
 }
 
+export type DialogueLogEntry = {
+  type: "dialogue" | "choice"
+  speakerId?: string
+  text: string
+  scenarioId: string
+  sceneId: string
+  nodeId: string
+}
+
 export type Scenario = {
   id: string
   title: string
@@ -19,6 +28,7 @@ export type ScenarioRegistry = Record<string, Scenario>
 
 export type Scene = {
   id: string
+  backgroundId?: string
   initialNodeId: string
   nodes: Record<string, StoryNode>
 }
