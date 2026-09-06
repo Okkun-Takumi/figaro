@@ -15,7 +15,7 @@ export const weddingRoom = {
   nodes: {
     "room-entry": { type: "dialogue", id: "room-entry", speakerId: "figaro", text: "五……十……二十……", presentation: roomPresentation, next: { nodeId: "figaro-measuring" } },
     "figaro-measuring": { type: "dialogue", id: "figaro-measuring", speakerId: "figaro", text: "「この部屋なら、ベッドはここだな。扉からも近いし、朝は日が入る」", presentation: roomPresentation, next: { nodeId: "susanna-question" } },
-    "susanna-question": { type: "dialogue", id: "susanna-question", speakerId: "susanna", text: "「本当に、ここでいいと思っているの？」", presentation: { ...roomPresentation, characters: [{ characterId: "figaro", expressionId: "neutral", position: "left" }, { characterId: "susanna", expressionId: "concerned", position: "right" }] }, next: { nodeId: "figaro-answer" } },
+    "susanna-question": { type: "dialogue", id: "susanna-question", speakerId: "susanna", text: "「本当に、ここでいいと思っているの？」", presentation: { ...roomPresentation, characters: [{ characterId: "figaro", expressionId: "neutral", position: "left" }, { characterId: "susanna", expressionId: "worried", position: "right" }] }, next: { nodeId: "figaro-answer" } },
     "figaro-answer": { type: "dialogue", id: "figaro-answer", speakerId: "figaro", text: "「伯爵様がくださった部屋だ。何が悪い？」", presentation: roomPresentation, next: { nodeId: "susanna-reveal" } },
     "susanna-reveal": { type: "dialogue", id: "susanna-reveal", speakerId: "susanna", text: "「伯爵の寝室にも、夫人の部屋にも近すぎるのよ。そんな親切、素直に喜べる？」", presentation: roomPresentation, next: { nodeId: "figaro-realizes" } },
     "figaro-realizes": { type: "dialogue", id: "figaro-realizes", speakerId: "figaro", text: "「……なるほど。そういうことか」", presentation: roomPresentation, next: { nodeId: "figaro-looks-away" } },

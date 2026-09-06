@@ -8,6 +8,14 @@ const presentation = {
   ],
 }
 
+const worriedPresentation = {
+  ...presentation,
+  characters: [
+    { characterId: "cherubino", expressionId: "worried", position: "left" as const },
+    { characterId: "count", expressionId: "neutral", position: "right" as const },
+  ],
+}
+
 export const cherubinoArmy = {
   id: "cherubino-army",
   backgroundId: "manor-hallway",
@@ -15,15 +23,15 @@ export const cherubinoArmy = {
   nodes: {
     "villagers-leave": { type: "dialogue", id: "villagers-leave", text: "村人たちが去ると、フィガロはケルビーノがすっかり落ち込んでいることに気づいた。", presentation, next: { nodeId: "figaro-asks" } },
     "figaro-asks": { type: "dialogue", id: "figaro-asks", speakerId: "figaro", text: "「どうした、ケルビーノ。」", presentation: { ...presentation, characters: [{ characterId: "figaro", expressionId: "neutral", position: "left" }, { characterId: "cherubino", expressionId: "neutral", position: "right" }] }, next: { nodeId: "susanna-explains" } },
-    "susanna-explains": { type: "dialogue", id: "susanna-explains", speakerId: "susanna", text: "「伯爵様に館を追い出されるのよ。」", presentation: { ...presentation, characters: [{ characterId: "susanna", expressionId: "concerned", position: "left" }, { characterId: "cherubino", expressionId: "neutral", position: "right" }] }, next: { nodeId: "figaro-surprised" } },
+    "susanna-explains": { type: "dialogue", id: "susanna-explains", speakerId: "susanna", text: "「伯爵様に館を追い出されるのよ。」", presentation: { ...presentation, characters: [{ characterId: "susanna", expressionId: "worried", position: "left" }, { characterId: "cherubino", expressionId: "neutral", position: "right" }] }, next: { nodeId: "figaro-surprised" } },
     "figaro-surprised": { type: "dialogue", id: "figaro-surprised", speakerId: "figaro", text: "「今日みたいなめでたい日に？」", presentation, next: { nodeId: "cherubino-pleads" } },
-    "cherubino-pleads": { type: "dialogue", id: "cherubino-pleads", speakerId: "cherubino", text: "「伯爵様……お許しください。」", presentation, next: { nodeId: "count-rebukes" } },
+    "cherubino-pleads": { type: "dialogue", id: "cherubino-pleads", speakerId: "cherubino", text: "「伯爵様……お許しください。」", presentation: worriedPresentation, next: { nodeId: "count-rebukes" } },
     "count-rebukes": { type: "dialogue", id: "count-rebukes", speakerId: "count", text: "「お前は許されるようなことをしたか？」", presentation, next: { nodeId: "susanna-defends" } },
     "susanna-defends": { type: "dialogue", id: "susanna-defends", speakerId: "susanna", text: "「まだ子どもです。」", presentation, next: { nodeId: "count-wary" } },
     "count-wary": { type: "dialogue", id: "count-wary", speakerId: "count", text: "「君が思っているほど子どもでもない。」伯爵の声には、叱責だけでなく警戒も混じっていた。", presentation, next: { nodeId: "count-forgives" } },
     "count-forgives": { type: "dialogue", id: "count-forgives", speakerId: "count", text: "「……いいだろう。許そう。それどころか、もっと良い話がある。」", presentation, next: { nodeId: "count-promotes" } },
     "count-promotes": { type: "dialogue", id: "count-promotes", speakerId: "count", text: "「私の連隊で士官の席が一つ空いている。お前をそこへ任命しよう。」", presentation, next: { nodeId: "cherubino-confused" } },
-    "cherubino-confused": { type: "dialogue", id: "cherubino-confused", speakerId: "cherubino", text: "「……え？」", presentation, next: { nodeId: "count-orders" } },
+    "cherubino-confused": { type: "dialogue", id: "cherubino-confused", speakerId: "cherubino", text: "「……え？」", presentation: worriedPresentation, next: { nodeId: "count-orders" } },
     "count-orders": { type: "dialogue", id: "count-orders", speakerId: "count", text: "「すぐに出発しろ。」表面上は昇進と名誉だが、実際にはケルビーノを館から遠ざける措置だった。", presentation, next: { nodeId: "overheard-branch" } },
     "overheard-branch": { type: "branch", id: "overheard-branch", branches: [{ when: { type: "flag", key: "countRealizesCherubinoOverheard", operator: "===", value: true }, next: { nodeId: "overheard-thought" } }], default: { nodeId: "jealousy-branch" } },
     "overheard-thought": { type: "dialogue", id: "overheard-thought", text: "許したんじゃない。自分の秘密を聞いたケルビーノを、館から遠ざけるつもりなんだ。", presentation, next: { nodeId: "jealousy-branch" } },
@@ -43,7 +51,7 @@ export const cherubinoArmy = {
     "army-choice-rejoin": { type: "dialogue", id: "army-choice-rejoin", speakerId: "figaro", text: "「せめて明日まで待てませんか。」", presentation, next: { nodeId: "susanna-asks-delay" } },
     "susanna-asks-delay": { type: "dialogue", id: "susanna-asks-delay", speakerId: "susanna", text: "「そうです。今日だけでも館にいさせてください。」", presentation, next: { nodeId: "count-refuses-delay" } },
     "count-refuses-delay": { type: "dialogue", id: "count-refuses-delay", speakerId: "count", text: "「だめだ。すぐに出発しろ。」", presentation, effects: [{ type: "setFlag", key: "cherubinoSentToArmy", value: true }], next: { nodeId: "cherubino-accepts" } },
-    "cherubino-accepts": { type: "dialogue", id: "cherubino-accepts", speakerId: "cherubino", text: "「……分かりました。」", presentation, next: { nodeId: "figaro-comforts" } },
+    "cherubino-accepts": { type: "dialogue", id: "cherubino-accepts", speakerId: "cherubino", text: "「……分かりました。」", presentation: worriedPresentation, next: { nodeId: "figaro-comforts" } },
     "figaro-comforts": { type: "dialogue", id: "figaro-comforts", speakerId: "figaro", text: "「おいおい。そんな顔をするなよ、少尉殿。」", presentation: { ...presentation, characters: [{ characterId: "figaro", expressionId: "smile", position: "left" }, { characterId: "cherubino", expressionId: "neutral", position: "right" }] }, next: { nodeId: "figaro-teases" } },
     "figaro-teases": { type: "dialogue", id: "figaro-teases", speakerId: "figaro", text: "「今までみたいに、女の子の周りをひらひら飛び回る生活とはお別れだな。きれいな服も帽子も、恋のため息も終わり。」", presentation, next: { nodeId: "figaro-march" } },
     "figaro-march": { type: "dialogue", id: "figaro-march", speakerId: "figaro", text: "「これからは軍服。肩には銃、横には剣。泥の中を行進だ。」", presentation, next: { nodeId: "player-asks-comfort" } },

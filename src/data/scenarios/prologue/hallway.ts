@@ -31,7 +31,7 @@ export const manorHallway = {
       id: "hallway-susanna",
       speakerId: "susanna",
       text: "「急いで。今日の婚礼には、少し事情があるの」",
-      presentation: { characters: [{ characterId: "figaro", expressionId: "neutral", position: "left" }, { characterId: "susanna", expressionId: "concerned", position: "right" }] },
+      presentation: { characters: [{ characterId: "figaro", expressionId: "neutral", position: "left" }, { characterId: "susanna", expressionId: "worried", position: "right" }] },
       next: { nodeId: "prologue-transition" },
     },
     "prologue-transition": {

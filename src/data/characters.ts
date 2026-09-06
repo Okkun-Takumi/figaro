@@ -22,11 +22,10 @@ export const characters: Record<string, Character> = {
     name: "スザンナ",
     color: "#b9829d",
     expressions: {
-      neutral: {},
-      smile: {},
-      concerned: {},
-      determined: {},
-      surprised: {},
+      neutral: { imagePath: "/characters/susanna/neutral.webp" },
+      smile: { imagePath: "/characters/susanna/smile.webp" },
+      serious: { imagePath: "/characters/susanna/serious.webp" },
+      worried: { imagePath: "/characters/susanna/worried.webp" },
     },
   },
   marcellina: {
@@ -56,10 +55,10 @@ export const characters: Record<string, Character> = {
     name: "ケルビーノ",
     color: "#7e9bad",
     expressions: {
-      neutral: {},
-      smile: {},
-      angry: {},
-      surprised: {},
+      neutral: { imagePath: "/characters/cherubino/neutral.webp" },
+      flustered: { imagePath: "/characters/cherubino/flustered.webp" },
+      worried: { imagePath: "/characters/cherubino/worried.webp" },
+      surprised: { imagePath: "/characters/cherubino/surprised.webp" },
     },
   },
   count: {
