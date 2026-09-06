@@ -66,10 +66,21 @@ export const characters: Record<string, Character> = {
     name: "伯爵",
     color: "#536f89",
     expressions: {
-      neutral: {},
-      smile: {},
-      angry: {},
-      surprised: {},
+      neutral: { imagePath: "/characters/count/neutral.webp" },
+      charming: { imagePath: "/characters/count/charming.webp" },
+      angry: { imagePath: "/characters/count/angry.webp" },
+      surprised: { imagePath: "/characters/count/surprised.webp" },
+    },
+  },
+  countess: {
+    id: "countess",
+    name: "伯爵夫人",
+    color: "#714353",
+    expressions: {
+      neutral: { imagePath: "/characters/countess/neutral.webp" },
+      sad: { imagePath: "/characters/countess/sad.webp" },
+      smile: { imagePath: "/characters/countess/smile.webp" },
+      surprised: { imagePath: "/characters/countess/surprised.webp" },
     },
   },
   basilio: {
