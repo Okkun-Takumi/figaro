@@ -31,8 +31,6 @@ export const marcellinaBartolo = {
     "question-marriage-reaction": { type: "dialogue", id: "question-marriage-reaction", speakerId: "marcellina", text: "「契約は人の意思を確かめるものでもあるわ。彼が軽く交わした約束なら、なおさらね」", presentation, next: { nodeId: "contract-rejoin" } },
     "notice-revenge-reaction": { type: "dialogue", id: "notice-revenge-reaction", speakerId: "bartolo", text: "「復讐で何が悪い。借りを返す機会が、ようやく巡ってきたのだ」", presentation, next: { nodeId: "contract-rejoin" } },
     "contract-rejoin": { type: "dialogue", id: "contract-rejoin", text: "契約書は静かに畳まれた。しかし、その一枚が婚礼を覆す力を持っていることは明らかだった。", presentation, next: { nodeId: "la-vendetta-title" } },
-    "la-vendetta-title": { type: "dialogue", id: "la-vendetta-title", speakerId: "bartolo", text: "♪ La vendetta", presentation, next: { nodeId: "la-vendetta-explanation" } },
-    "la-vendetta-explanation": { type: "dialogue", id: "la-vendetta-explanation", text: "歌う人物：バルトロ。バルトロはフィガロへの過去の恨みから、復讐の機会が来たと喜んでいる。", presentation, next: { nodeId: "la-vendetta-point" } },
-    "la-vendetta-point": { type: "dialogue", id: "la-vendetta-point", text: "【観劇ポイント】この曲が始まったら、「バルトロが昔の恨みを晴らそうとしている」場面だと分かればよい。", presentation, next: { sceneId: "susanna-marcellina", nodeId: "duel-entry" } },
+    "la-vendetta-title": { type: "dialogue", id: "la-vendetta-title", speakerId: "bartolo", text: "♪ La vendetta", presentation: { ...presentation, musicId: "laVendetta" }, next: { sceneId: "susanna-marcellina", nodeId: "duel-entry" } },
   },
 } satisfies Scene
