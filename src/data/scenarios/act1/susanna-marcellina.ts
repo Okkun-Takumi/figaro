@@ -30,9 +30,7 @@ export const susannaMarcellina = {
     "support-susanna-reaction": { type: "dialogue", id: "support-susanna-reaction", speakerId: "susanna", text: "「まあ、そんなふうに見える？ 私はただ、礼儀を守っているだけよ」", presentation, next: { nodeId: "duel-rejoin" } },
     "understand-marcellina-reaction": { type: "dialogue", id: "understand-marcellina-reaction", speakerId: "marcellina", text: "「事情のない人などいないわ。だから私は、手に入るはずのものを手放したくないだけ」", presentation, next: { nodeId: "duel-rejoin" } },
     "duel-rejoin": { type: "dialogue", id: "duel-rejoin", speakerId: "susanna", text: "「では、失礼します。どうぞあなたも、お幸せに」", presentation, next: { nodeId: "via-resti-title" } },
-    "via-resti-title": { type: "dialogue", id: "via-resti-title", text: "♪ Via resti servita", presentation, next: { nodeId: "via-resti-explanation" } },
-    "via-resti-explanation": { type: "dialogue", id: "via-resti-explanation", text: "歌う人物：スザンナ / マルチェリーナ。表面上は礼儀正しいが、実際には互いに嫌味をぶつけ合っている二重唱。", presentation, next: { nodeId: "via-resti-point" } },
-    "via-resti-point": { type: "dialogue", id: "via-resti-point", text: "【観劇ポイント】二人が丁寧に譲り合うほど、実際には喧嘩が激しくなっている。", presentation, next: { nodeId: "marcellina-exit" } },
+    "via-resti-title": { type: "dialogue", id: "via-resti-title", text: "♪ Via resti servita", presentation: { ...presentation, musicId: "viaRestiServita" }, next: { nodeId: "marcellina-exit" } },
     "marcellina-exit": { type: "dialogue", id: "marcellina-exit", text: "マルチェリーナは微笑んだまま去った。スザンナが息をつく間もなく、誰かが慌てて駆け寄ってくる。", presentation, next: { sceneId: "cherubino", nodeId: "cherubino-entry" } },
   },
 } satisfies Scene

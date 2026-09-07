@@ -1,5 +1,6 @@
 import { characters, type Character } from "../data/characters"
 import { backgrounds, type Background } from "../data/backgrounds"
+import { musicTracks, type MusicTrack } from "../data/music"
 import type { NextTarget, Presentation, Scenario, ScenarioRegistry, StoryNode } from "./types"
 
 export function validateScenario(
@@ -7,6 +8,7 @@ export function validateScenario(
   scenarioRegistry: ScenarioRegistry,
   characterMaster: Record<string, Character> = characters,
   backgroundMaster: Record<string, Background> = backgrounds,
+  musicMaster: Record<string, MusicTrack> = musicTracks,
 ): string[] {
   const errors: string[] = []
   const validateTarget = (target: NextTarget, sceneId: string, source: string) => {
@@ -27,6 +29,9 @@ export function validateScenario(
   const validatePresentation = (presentation: Presentation | undefined, source: string) => {
     if (presentation?.backgroundId && !backgroundMaster[presentation.backgroundId]) {
       errors.push(`${source}: backgroundId "${presentation.backgroundId}" does not exist.`)
+    }
+    if (presentation?.musicId && !musicMaster[presentation.musicId]) {
+      errors.push(`${source}: musicId "${presentation.musicId}" does not exist.`)
     }
     for (const appearance of presentation?.characters ?? []) {
       const character = characterMaster[appearance.characterId]

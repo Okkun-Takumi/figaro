@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { characters } from "../../data/characters"
 import { backgrounds } from "../../data/backgrounds"
+import { musicTracks } from "../../data/music"
 import { prologue } from "../../data/scenarios/prologue"
 import { scenarios } from "../../data/scenarios"
 import { getNode, getScenario } from "../../engine/scenarioEngine"
@@ -10,6 +11,7 @@ import { BackgroundLayer } from "./BackgroundLayer"
 import { ChoiceList } from "./ChoiceList"
 import { DialogueBox } from "./DialogueBox"
 import { LogModal } from "./LogModal"
+import { MusicUnlockedCard } from "./MusicUnlockedCard"
 
 export function NovelScreen() {
   const scenarioId = useGameStore((store) => store.scenarioId)
@@ -36,6 +38,7 @@ export function NovelScreen() {
   const backgroundId = presentation?.backgroundId ?? scene.backgroundId
   const background = backgroundId ? backgrounds[backgroundId] : undefined
   const speakerName = node.type === "dialogue" && node.speakerId ? characters[node.speakerId]?.name : undefined
+  const musicTrack = presentation?.musicId ? musicTracks[presentation.musicId] : undefined
   const handleAdvance = () => {
     if (node.type !== "dialogue") return
     if (node.next.scenarioId && node.next.scenarioId !== scenarioId) {
@@ -65,7 +68,7 @@ export function NovelScreen() {
         <button type="button" onClick={back} disabled={backHistory.length === 0 || isLogOpen}>BACK</button>
         <button type="button" onClick={() => setIsLogOpen(true)}>LOG</button>
       </nav>
-      {node.type === "dialogue" && <DialogueBox speaker={speakerName} text={node.text} onAdvance={handleAdvance} />}
+      {node.type === "dialogue" && (musicTrack ? <MusicUnlockedCard track={musicTrack} text={node.text} onAdvance={handleAdvance} /> : <DialogueBox speaker={speakerName} text={node.text} onAdvance={handleAdvance} />)}
       {node.type === "choice" && <ChoiceList prompt={node.prompt} choices={node.choices} onChoose={(choice) => choose(scenarios, choice)} />}
       {node.type === "end" && <section className="end-card"><p>{scenario.title} 完了</p><button type="button" onClick={() => start(prologue)}>もう一度読む</button></section>}
       {isLogOpen && <LogModal entries={dialogueLog} onClose={() => setIsLogOpen(false)} />}
