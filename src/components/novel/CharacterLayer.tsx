@@ -5,11 +5,13 @@ import type { CharacterAppearance } from "../../engine/types"
 type Props = { charactersToDisplay?: CharacterAppearance[] }
 
 export function CharacterLayer({ charactersToDisplay = [] }: Props) {
-  const countClass = charactersToDisplay.length === 2
-    ? " character-layer--two"
-    : charactersToDisplay.length >= 3
-      ? " character-layer--three"
-      : ""
+  const countClass = charactersToDisplay.length === 1
+    ? " character-layer--single"
+    : charactersToDisplay.length === 2
+      ? " character-layer--two"
+      : charactersToDisplay.length >= 3
+        ? " character-layer--three"
+        : ""
 
   return (
     <div className={`character-layer${countClass}`} aria-hidden="true">
