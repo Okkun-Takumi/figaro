@@ -5,6 +5,7 @@ import type { CharacterAppearance } from "../../engine/types"
 type Props = { charactersToDisplay?: CharacterAppearance[] }
 
 export function CharacterLayer({ charactersToDisplay = [] }: Props) {
+  const isSingleCharacter = charactersToDisplay.length === 1
   const countClass = charactersToDisplay.length === 1
     ? " character-layer--single"
     : charactersToDisplay.length === 2
@@ -20,7 +21,7 @@ export function CharacterLayer({ charactersToDisplay = [] }: Props) {
         const expressionId = appearance.expressionId ?? "neutral"
         const imagePath = character?.expressions[expressionId]?.imagePath
         return (
-          <div className={`character character--${appearance.position}${imagePath ? " character--image" : ""}`} key={`${appearance.characterId}-${appearance.position}-${expressionId}`} style={{ "--character-color": character?.color } as CSSProperties}>
+          <div className={`character character--${appearance.position}${isSingleCharacter ? " character--single" : ""}${imagePath ? " character--image" : ""}`} key={`${appearance.characterId}-${appearance.position}-${expressionId}`} style={{ "--character-color": character?.color } as CSSProperties}>
             {imagePath ? <img className="character__image" src={imagePath} alt={character?.name ?? appearance.characterId} /> : <><span className="character__expression">{expressionId}</span><span className="character__name">{character?.name ?? appearance.characterId}</span></>}
           </div>
         )
