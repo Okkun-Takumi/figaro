@@ -1,6 +1,7 @@
 import { create } from "zustand"
 import { applyEffects } from "../engine/effectExecutor"
 import { getNode, resolveBranch, resolveTarget } from "../engine/scenarioEngine"
+import { saveProgress } from "../engine/saveData"
 import type { Choice, DialogueLogEntry, GameState, Scenario, ScenarioRegistry } from "../engine/types"
 
 const BACK_HISTORY_LIMIT = 200
@@ -15,6 +16,8 @@ type GameStore = GameState & {
   backHistory: BackHistoryEntry[]
   dialogueLog: DialogueLogEntry[]
   start: (scenario: Scenario) => void
+  restore: (state: GameState, dialogueLog: DialogueLogEntry[]) => void
+  returnToTitle: () => void
   advanceDialogue: (registry: ScenarioRegistry) => void
   choose: (registry: ScenarioRegistry, choice: Choice) => void
   resolveBranches: (registry: ScenarioRegistry) => void
@@ -44,6 +47,16 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (node.type === "dialogue") {
       set({ dialogueLog: [{ type: "dialogue", speakerId: node.speakerId, text: node.text, scenarioId: state.scenarioId, sceneId: state.sceneId, nodeId: state.nodeId }] })
     }
+    saveProgress(snapshotState(get()), get().dialogueLog)
+  },
+  restore: (state, dialogueLog) => {
+    set({ ...initialState, ...snapshotState(state), backHistory: [], dialogueLog })
+    saveProgress(snapshotState(get()), get().dialogueLog)
+  },
+  returnToTitle: () => {
+    const state = get()
+    if (state.scenarioId) saveProgress(snapshotState(state), state.dialogueLog)
+    set({ ...initialState, backHistory: [], dialogueLog: [] })
   },
   advanceDialogue: (registry) => {
     const state = get()
@@ -58,6 +71,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (nextNode.type === "dialogue") {
       set((current) => ({ dialogueLog: pushBounded(current.dialogueLog, { type: "dialogue", speakerId: nextNode.speakerId, text: nextNode.text, scenarioId: nextState.scenarioId, sceneId: nextState.sceneId, nodeId: nextState.nodeId }, DIALOGUE_LOG_LIMIT) }))
     }
+    saveProgress(snapshotState(get()), get().dialogueLog)
   },
   choose: (registry, choice) => {
     const state = get()
@@ -72,6 +86,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (nextNode.type === "dialogue") {
       set((current) => ({ dialogueLog: pushBounded(current.dialogueLog, { type: "dialogue", speakerId: nextNode.speakerId, text: nextNode.text, scenarioId: nextState.scenarioId, sceneId: nextState.sceneId, nodeId: nextState.nodeId }, DIALOGUE_LOG_LIMIT) }))
     }
+    saveProgress(snapshotState(get()), get().dialogueLog)
   },
   resolveBranches: (registry) => {
     let safetyCounter = 0
@@ -85,5 +100,6 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const entry = current.backHistory[current.backHistory.length - 1]
     if (!entry) return
     set({ ...entry.state, dialogueLog: entry.dialogueLog, backHistory: current.backHistory.slice(0, -1) })
+    saveProgress(snapshotState(get()), get().dialogueLog)
   },
 }))
