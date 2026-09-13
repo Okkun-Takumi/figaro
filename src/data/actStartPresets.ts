@@ -68,6 +68,20 @@ export const actStartPresets = {
     flags: { knowsWedding: true, knowsCountsInterestInSusanna: true, figaroPlansResistance: true, knowsFigaroDebtContract: true, knowsMarcellinaWantsMarriage: true, knowsCherubinoBanished: true, cherubinoSentToArmy: true, cherubinoEscapedThroughWindow: true, figaroPubliclyPressuredCount: true, understandsCountCountermove: true },
     affinity: {},
   },
+  act4: {
+    scenarioId: "act4",
+    sceneId: "barbarina-lost-pin",
+    nodeId: "barbarina-searches",
+    flags: {
+      knowsWedding: true,
+      figaroIsMarcellinaSon: true,
+      bartoloIsFigaroFather: true,
+      figaroDebtMarriageThreatResolved: true,
+      countReceivedGardenLetter: true,
+      countMustReturnPin: true,
+    },
+    affinity: {},
+  },
 } satisfies Record<string, ActStartPreset>
 
 export type ActStartId = keyof typeof actStartPresets

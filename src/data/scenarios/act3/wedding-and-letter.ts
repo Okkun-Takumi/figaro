@@ -16,5 +16,5 @@ export const weddingAndLetter = { id: "wedding-and-letter", backgroundId: "great
   "swap-reaction": { type: "dialogue", id: "swap-reaction", text: "夜になれば、二人の衣装と役割が入れ替わる。", presentation: wedding, next: { nodeId: "summary" } },
   "signal-reaction": { type: "dialogue", id: "signal-reaction", text: "さっき手紙を留めていた、あのピンが伯爵の手元に残った。", presentation: wedding, next: { nodeId: "summary" } },
   summary: { type: "dialogue", id: "summary", text: "ACT 3 COMPLETE\n\nフィガロの出生が判明し、マルチェリーナとの結婚問題は解消した。フィガロとスザンナは結婚し、伯爵夫人とスザンナは伯爵を夜の庭へ誘い出す罠を仕掛けた。伯爵はピンで留められた手紙を受け取った。次は夜の庭で計画が実行される。", presentation: wedding, next: { nodeId: "act3-complete" } },
-  "act3-complete": { type: "end", id: "act3-complete", presentation: wedding },
+  "act3-complete": { type: "dialogue", id: "act3-complete", text: "第三幕の物語はここまで。夜の庭で、計画と誤解が交差し始める。", presentation: wedding, next: { scenarioId: "act4", sceneId: "barbarina-lost-pin", nodeId: "barbarina-searches" } },
 } } satisfies Scene
