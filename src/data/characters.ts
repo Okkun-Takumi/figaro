@@ -103,4 +103,25 @@ export const characters: Record<string, Character> = {
       angry: { imagePath: "/characters/antonio/angry.webp" },
     },
   },
+  curzio: {
+    id: "curzio",
+    name: "ドン・クルツィオ",
+    color: "#55606D",
+    expressions: {
+      neutral: { imagePath: "/characters/curzio/neutral.webp" },
+      serious: { imagePath: "/characters/curzio/serious.webp" },
+      surprised: { imagePath: "/characters/curzio/surprised.webp" },
+    },
+  },
+  barbarina: {
+    id: "barbarina",
+    name: "バルバリーナ",
+    color: "#C98F6A",
+    expressions: {
+      neutral: { imagePath: "/characters/barbarina/neutral.webp" },
+      smile: { imagePath: "/characters/barbarina/smile.webp" },
+      pleading: { imagePath: "/characters/barbarina/pleading.webp" },
+      worried: { imagePath: "/characters/barbarina/worried.webp" },
+    },
+  },
 }

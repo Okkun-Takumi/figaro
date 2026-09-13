@@ -376,9 +376,11 @@ export const act2Finale = {
       next: { nodeId: "act2-complete" },
     },
     "act2-complete": {
-      type: "end",
+      type: "dialogue",
       id: "act2-complete",
       presentation: countAdvantagePresentation,
+      text: "第二幕が終わる。",
+      next: { scenarioId: "act3", sceneId: "susanna-count-ruse", nodeId: "susanna-approaches" },
     },
   },
 } satisfies Scene

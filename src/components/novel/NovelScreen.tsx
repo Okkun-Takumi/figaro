@@ -68,7 +68,7 @@ export function NovelScreen() {
           <button type="button" onClick={() => beginFromAct("prologue")}>PROLOGUE</button>
           <button type="button" onClick={() => beginFromAct("act1")}>ACT 1</button>
           <button type="button" onClick={() => beginFromAct("act2")}>ACT 2</button>
-          <button type="button" disabled>ACT 3 — COMING SOON</button>
+          <button type="button" onClick={() => beginFromAct("act3")}>ACT 3</button>
           <button type="button" disabled>ACT 4 — COMING SOON</button>
         </section>}
         <button className="title-screen__restore-toggle" type="button" onClick={() => setIsTitleRestoreOpen((open) => !open)}>復元コードを入力</button>
