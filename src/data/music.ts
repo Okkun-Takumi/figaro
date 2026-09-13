@@ -11,6 +11,12 @@ export type MusicTrack = {
 }
 
 export const musicTracks: Record<string, MusicTrack> = {
+  doveSono: { id: "doveSono", title: "Dove sono i bei momenti", performers: ["伯爵夫人"], situation: "伯爵夫人が、かつて伯爵と幸せだった頃を思い返しながら、失われた愛を嘆く場面。", meaning: "過去の幸福と現在の孤独を比べながら、最後には夫の愛を取り戻したいという希望へ向かうアリア。", viewingPoint: "苦しみを訴えていた伯爵夫人が、再び行動する意志を取り戻していく変化に注目。" },
+  sullAria: { id: "sullAria", title: "Sull'aria... Che soave zeffiretto", performers: ["伯爵夫人", "スザンナ"], situation: "伯爵夫人が口述し、スザンナが伯爵を庭へ誘い出す手紙を書く場面。", meaning: "一見すると穏やかな恋文だが、実際には伯爵を罠へ導くための計画の一部になっている二重唱。", viewingPoint: "二人の声が美しく重なる一方で、内容は伯爵を騙すための作戦だというギャップに注目。" },
+  eccoLaMarcia: { id: "eccoLaMarcia", title: "Ecco la marcia", performers: ["合唱", "フィガロ", "スザンナ", "伯爵", "伯爵夫人"], situation: "フィガロとスザンナの結婚を祝うため、人々が集まり祝祭が進む場面。", meaning: "結婚式の祝福の裏で、伯爵を庭へ誘い出す計画も進んでいる。", viewingPoint: "華やかな祝祭の表面と、裏で進む策略の二重構造に注目。" },
+  crudelPercheFinora: { id: "crudelPercheFinora", title: "Crudel! perché finora", performers: ["伯爵", "スザンナ"], situation: "スザンナが伯爵に対して、夜の庭で会う約束を匂わせる場面。", meaning: "伯爵はスザンナが自分に応じたと思って喜ぶが、実際にはスザンナが罠へ誘導している二重唱。", viewingPoint: "伯爵とスザンナが同じ会話をしていても、二人の目的がまったく違うことに注目。" },
+  vedroMentrIoSospiro: { id: "vedroMentrIoSospiro", title: "Vedrò mentr'io sospiro", performers: ["伯爵"], situation: "スザンナとフィガロに騙されていたと知った伯爵が、怒りと屈辱を募らせる場面。", meaning: "身分では自分が上なのに、召使いのフィガロに出し抜かれることが許せず、結婚を邪魔して報復しようと決意するアリア。", viewingPoint: "単なる恋愛嫉妬だけでなく、主人である自分が召使いに負けることへの階級的な屈辱に注目。" },
+  riconosciInQuestoAmplesso: { id: "riconosciInQuestoAmplesso", title: "Riconosci in questo amplesso", performers: ["マルチェリーナ", "フィガロ", "バルトロ", "ドン・クルツィオ", "伯爵", "スザンナ"], situation: "借金裁判の最中、フィガロがマルチェリーナとバルトロの息子だと判明し、周囲が驚く場面。", meaning: "結婚を迫っていた相手が実は母親だったという、物語最大級の喜劇的な逆転を描く六重唱。", viewingPoint: "フィガロと家族の再会だけでなく、周囲の人物がそれぞれ異なる理由で驚いている点に注目。" },
   act2Finale: {
     id: "act2Finale",
     title: "Esci, ormai, garzon malnato!",

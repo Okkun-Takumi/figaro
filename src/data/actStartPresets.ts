@@ -61,6 +61,13 @@ export const actStartPresets = {
     },
     affinity: {},
   },
+  act3: {
+    scenarioId: "act3",
+    sceneId: "susanna-count-ruse",
+    nodeId: "susanna-approaches",
+    flags: { knowsWedding: true, knowsCountsInterestInSusanna: true, figaroPlansResistance: true, knowsFigaroDebtContract: true, knowsMarcellinaWantsMarriage: true, knowsCherubinoBanished: true, cherubinoSentToArmy: true, cherubinoEscapedThroughWindow: true, figaroPubliclyPressuredCount: true, understandsCountCountermove: true },
+    affinity: {},
+  },
 } satisfies Record<string, ActStartPreset>
 
 export type ActStartId = keyof typeof actStartPresets
