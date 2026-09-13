@@ -60,6 +60,6 @@ export const cherubinoArmy = {
     "susanna-calls-out": { type: "dialogue", id: "susanna-calls-out", speakerId: "susanna", text: "「絶対楽しんでるでしょ。」", presentation, next: { nodeId: "non-piu-title" } },
     "non-piu-title": { type: "dialogue", id: "non-piu-title", text: "♪ Non più andrai", presentation: { ...presentation, musicId: "nonPiuAndrai" }, next: { nodeId: "act1-summary" } },
     "act1-summary": { type: "dialogue", id: "act1-summary", text: "ACT 1 COMPLETE\n\n結婚式の朝。フィガロとスザンナは伯爵の企みを知った。フィガロは伯爵を公衆の前で追い込んだが、結婚式は延期された。マルチェリーナの契約も残っている。そしてケルビーノは、突然軍隊へ送られることになった。結婚式まではまだ遠い。", presentation, next: { nodeId: "act1-complete" } },
-    "act1-complete": { type: "end", id: "act1-complete" },
+    "act1-complete": { type: "dialogue", id: "act1-complete", text: "第一幕が終わる。", presentation, next: { scenarioId: "act2", sceneId: "countess-lament", nodeId: "act2-entry" } },
   },
 } satisfies Scene

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import type { ActStartId } from "../../data/actStartPresets"
 import { characters } from "../../data/characters"
 import { backgrounds } from "../../data/backgrounds"
 import { musicTracks } from "../../data/music"
@@ -22,6 +23,7 @@ export function NovelScreen() {
   const flags = useGameStore((store) => store.flags)
   const affinity = useGameStore((store) => store.affinity)
   const start = useGameStore((store) => store.start)
+  const startFromAct = useGameStore((store) => store.startFromAct)
   const restore = useGameStore((store) => store.restore)
   const returnToTitle = useGameStore((store) => store.returnToTitle)
   const advanceDialogue = useGameStore((store) => store.advanceDialogue)
@@ -35,6 +37,7 @@ export function NovelScreen() {
   const [isTitleRestoreOpen, setIsTitleRestoreOpen] = useState(false)
   const [titleRestoreCode, setTitleRestoreCode] = useState("")
   const [titleRestoreMessage, setTitleRestoreMessage] = useState<string>()
+  const [isActSelectOpen, setIsActSelectOpen] = useState(false)
   const [savedProgress, setSavedProgress] = useState(() => loadSavedProgress(scenarios))
   const restoreFromTitle = () => {
     const restored = readSaveCode(titleRestoreCode, scenarios)
@@ -43,6 +46,10 @@ export function NovelScreen() {
       return
     }
     restore(restored.state, restored.dialogueLog)
+  }
+  const beginFromAct = (actId: ActStartId) => {
+    startFromAct(actId)
+    setSavedProgress(loadSavedProgress(scenarios))
   }
 
   if (!scenarioId) return (
@@ -53,8 +60,17 @@ export function NovelScreen() {
         <p className="title-screen__lead">《フィガロの結婚》を、物語を読みながら予習するインタラクティブガイドです。</p>
         <p className="title-screen__description">選択肢で登場人物や状況を整理し、♪ MUSIC UNLOCKEDでは実際の楽曲を試聴できます。</p>
         <p className="title-screen__note">イヤホン推奨</p>
-        {savedProgress && <button type="button" onClick={() => restore(savedProgress.state, savedProgress.dialogueLog)}>つづきから</button>}
-        <button type="button" onClick={() => { if (!savedProgress || window.confirm("現在の自動セーブは新しいPROLOGUEの進行で上書きされます。最初から始めますか？")) start(prologue) }}>PROLOGUEをはじめる</button>
+        <button type="button" onClick={() => { if (!savedProgress || window.confirm("現在の自動セーブは新しいPROLOGUEの進行で上書きされます。最初から始めますか？")) start(prologue) }}>NEW GAME</button>
+        <button type="button" disabled={!savedProgress} onClick={() => savedProgress && restore(savedProgress.state, savedProgress.dialogueLog)}>CONTINUE</button>
+        <button type="button" onClick={() => setIsActSelectOpen((open) => !open)} aria-expanded={isActSelectOpen}>ACT SELECT</button>
+        {isActSelectOpen && <section className="title-screen__act-select" aria-label="幕を選択">
+          <p>途中の幕から始める場合、それ以前に本筋上必ず起きた出来事は既知として開始します。過去の選択・好感度は初期状態になります。</p>
+          <button type="button" onClick={() => beginFromAct("prologue")}>PROLOGUE</button>
+          <button type="button" onClick={() => beginFromAct("act1")}>ACT 1</button>
+          <button type="button" onClick={() => beginFromAct("act2")}>ACT 2</button>
+          <button type="button" disabled>ACT 3 — COMING SOON</button>
+          <button type="button" disabled>ACT 4 — COMING SOON</button>
+        </section>}
         <button className="title-screen__restore-toggle" type="button" onClick={() => setIsTitleRestoreOpen((open) => !open)}>復元コードを入力</button>
         {isTitleRestoreOpen && <div className="title-screen__restore"><textarea value={titleRestoreCode} onChange={(event) => setTitleRestoreCode(event.target.value)} placeholder="FIGARO-2. で始まるコードを貼り付け" aria-label="復元コードを入力" /><button type="button" onClick={restoreFromTitle}>このコードで復元する</button>{titleRestoreMessage && <p role="status">{titleRestoreMessage}</p>}</div>}
       </div>

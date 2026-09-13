@@ -20,4 +20,9 @@ export const backgrounds: Record<string, Background> = {
     className: "background--wedding-room",
     imagePath: "/backgrounds/wedding-room.webp",
   },
+  "countess-bedroom": {
+    id: "countess-bedroom",
+    className: "background--countess-bedroom",
+    imagePath: "/backgrounds/countess-bedroom.webp",
+  },
 }
