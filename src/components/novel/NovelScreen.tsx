@@ -69,7 +69,7 @@ export function NovelScreen() {
           <button type="button" onClick={() => beginFromAct("act1")}>ACT 1</button>
           <button type="button" onClick={() => beginFromAct("act2")}>ACT 2</button>
           <button type="button" onClick={() => beginFromAct("act3")}>ACT 3</button>
-          <button type="button" disabled>ACT 4 — COMING SOON</button>
+          <button type="button" onClick={() => beginFromAct("act4")}>ACT 4</button>
         </section>}
         <button className="title-screen__restore-toggle" type="button" onClick={() => setIsTitleRestoreOpen((open) => !open)}>復元コードを入力</button>
         {isTitleRestoreOpen && <div className="title-screen__restore"><textarea value={titleRestoreCode} onChange={(event) => setTitleRestoreCode(event.target.value)} placeholder="FIGARO-2. で始まるコードを貼り付け" aria-label="復元コードを入力" /><button type="button" onClick={restoreFromTitle}>このコードで復元する</button>{titleRestoreMessage && <p role="status">{titleRestoreMessage}</p>}</div>}
@@ -125,7 +125,7 @@ export function NovelScreen() {
       </nav>
       {node.type === "dialogue" && (musicTrack ? <MusicUnlockedCard track={musicTrack} text={node.text} onAdvance={handleAdvance} /> : <DialogueBox speaker={speakerName} text={node.text} onAdvance={handleAdvance} />)}
       {node.type === "choice" && <ChoiceList prompt={node.prompt} choices={node.choices} onChoose={(choice) => choose(scenarios, choice)} />}
-      {node.type === "end" && <section className="end-card"><p>{scenario.title} 完了</p><button type="button" onClick={() => start(prologue)}>もう一度読む</button></section>}
+      {node.type === "end" && <section className="end-card">{scenarioId === "act4" ? <><p>THE END</p><p>物語を最後まで見届けました。</p></> : <p>{scenario.title} 完了</p>}<button type="button" onClick={() => start(prologue)}>もう一度読む</button></section>}
       {isLogOpen && <LogModal entries={dialogueLog} onClose={() => setIsLogOpen(false)} />}
       {isMenuOpen && <MenuModal state={state} onClose={() => setIsMenuOpen(false)} onReturnToTitle={() => { returnToTitle(); setSavedProgress(loadSavedProgress(scenarios)); setIsMenuOpen(false) }} onRestart={() => { if (window.confirm("現在の自動セーブは新しいPROLOGUEの進行で上書きされます。最初から始めますか？")) { setIsMenuOpen(false); start(prologue) } }} onRestoreCode={handleRestoreCode} />}
     </main>

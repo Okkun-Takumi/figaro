@@ -26,6 +26,7 @@ export const characters: Record<string, Character> = {
       smile: { imagePath: "/characters/susanna/smile.webp" },
       serious: { imagePath: "/characters/susanna/serious.webp" },
       worried: { imagePath: "/characters/susanna/worried.webp" },
+      disguise: { imagePath: "/characters/susanna/disguise.webp" },
     },
   },
   marcellina: {
@@ -81,6 +82,7 @@ export const characters: Record<string, Character> = {
       sad: { imagePath: "/characters/countess/sad.webp" },
       smile: { imagePath: "/characters/countess/smile.webp" },
       surprised: { imagePath: "/characters/countess/surprised.webp" },
+      disguise: { imagePath: "/characters/countess/disguise.webp" },
     },
   },
   basilio: {

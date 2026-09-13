@@ -11,6 +11,38 @@ export type MusicTrack = {
 }
 
 export const musicTracks: Record<string, MusicTrack> = {
+  dehVieniNonTardar: {
+    id: "dehVieniNonTardar",
+    title: "Deh vieni, non tardar",
+    performers: ["スザンナ"],
+    situation: "伯爵夫人の服を着たスザンナが、フィガロが近くで聞いていることを知りながら、夜の庭で恋の歌を歌う場面。",
+    meaning: "表面上は密会相手を待つ恋の歌に聞こえるが、スザンナはフィガロの嫉妬を知っており、彼をからかいながら自分の愛情も込めて歌っている。",
+    viewingPoint: "「この歌は誰に向けられているのか」を考えながら聴くと、スザンナとフィガロの関係がより面白く見える。フィガロには伯爵への歌に聞こえているが、本当の意図は別にある。",
+  },
+  act4Finale: {
+    id: "act4Finale",
+    title: "Contessa, perdono!",
+    performers: ["伯爵", "伯爵夫人", "フィガロ", "スザンナ", "ケルビーノ", "マルチェリーナ", "バルトロ", "バジリオ", "バルバリーナ", "アントニオ", "ドン・クルツィオ"],
+    situation: "夜の庭で変装と誤解がすべて明らかになり、伯爵が皆の前で伯爵夫人へ赦しを乞う、物語最後の場面。",
+    meaning: "他人を疑い、自分の権力で周囲を動かそうとしてきた伯爵が、最後には自分自身の過ちを認め、妻へ赦しを求める。伯爵夫人の赦しによって、一日の混乱がようやく終わる。",
+    viewingPoint: "伯爵が「赦す側」ではなく「赦しを乞う側」へ逆転する瞬間と、伯爵夫人の静かな寛大さに注目。その後、全員の声が重なって喜びへ変わっていく音楽も重要。",
+  },
+  lhoPerduta: {
+    id: "lhoPerduta",
+    title: "L'ho perduta, me meschina",
+    performers: ["バルバリーナ"],
+    situation: "バルバリーナが伯爵からスザンナへ返すよう頼まれたピンを、夜の庭でなくして探している場面。",
+    meaning: "短く素朴なアリアだが、第三幕で登場した「手紙を留めたピン」が第四幕の騒動を動かす重要なきっかけになる。",
+    viewingPoint: "バルバリーナ自身はただピンをなくして困っているだけだが、フィガロにとってはその意味が大きく、誤解と嫉妬の引き金になる点に注目。",
+  },
+  apriteUnPoQuegliOcchi: {
+    id: "apriteUnPoQuegliOcchi",
+    title: "Aprite un po' quegli occhi",
+    performers: ["フィガロ"],
+    situation: "スザンナが伯爵と密会すると誤解したフィガロが、嫉妬と怒りを募らせる場面。",
+    meaning: "フィガロが男性たちへ「女を信用するな」と語りかけるようなアリア。しかし観客はスザンナの本当の計画を知っているため、フィガロ自身が誤解していることが喜劇になる。",
+    viewingPoint: "フィガロの言葉をそのまま真実として受け取るのではなく、普段は策略家のフィガロ自身が嫉妬によって状況を読み違えている点に注目。",
+  },
   doveSono: { id: "doveSono", title: "Dove sono i bei momenti", performers: ["伯爵夫人"], situation: "伯爵夫人が、かつて伯爵と幸せだった頃を思い返しながら、失われた愛を嘆く場面。", meaning: "過去の幸福と現在の孤独を比べながら、最後には夫の愛を取り戻したいという希望へ向かうアリア。", viewingPoint: "苦しみを訴えていた伯爵夫人が、再び行動する意志を取り戻していく変化に注目。" },
   sullAria: { id: "sullAria", title: "Sull'aria... Che soave zeffiretto", performers: ["伯爵夫人", "スザンナ"], situation: "伯爵夫人が口述し、スザンナが伯爵を庭へ誘い出す手紙を書く場面。", meaning: "一見すると穏やかな恋文だが、実際には伯爵を罠へ導くための計画の一部になっている二重唱。", viewingPoint: "二人の声が美しく重なる一方で、内容は伯爵を騙すための作戦だというギャップに注目。" },
   eccoLaMarcia: { id: "eccoLaMarcia", title: "Ecco la marcia", performers: ["合唱", "フィガロ", "スザンナ", "伯爵", "伯爵夫人"], situation: "フィガロとスザンナの結婚を祝うため、人々が集まり祝祭が進む場面。", meaning: "結婚式の祝福の裏で、伯爵を庭へ誘い出す計画も進んでいる。", viewingPoint: "華やかな祝祭の表面と、裏で進む策略の二重構造に注目。" },
