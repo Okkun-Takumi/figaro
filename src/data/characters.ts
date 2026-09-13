@@ -57,6 +57,8 @@ export const characters: Record<string, Character> = {
       flustered: { imagePath: "/characters/cherubino/flustered.webp" },
       worried: { imagePath: "/characters/cherubino/worried.webp" },
       surprised: { imagePath: "/characters/cherubino/surprised.webp" },
+      disguised: { imagePath: "/characters/cherubino/disguised.webp" },
+      "disguised-worried": { imagePath: "/characters/cherubino/disguised-worried.webp" },
     },
   },
   count: {
@@ -89,6 +91,16 @@ export const characters: Record<string, Character> = {
       neutral: { imagePath: "/characters/basilio/neutral.webp" },
       smile: { imagePath: "/characters/basilio/smile.webp" },
       surprised: { imagePath: "/characters/basilio/surprised.webp" },
+    },
+  },
+  antonio: {
+    id: "antonio",
+    name: "アントニオ",
+    color: "#68705A",
+    expressions: {
+      neutral: { imagePath: "/characters/antonio/neutral.webp" },
+      suspicious: { imagePath: "/characters/antonio/suspicious.webp" },
+      angry: { imagePath: "/characters/antonio/angry.webp" },
     },
   },
 }

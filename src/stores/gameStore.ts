@@ -1,4 +1,5 @@
 import { create } from "zustand"
+import { actStartPresets, type ActStartId } from "../data/actStartPresets"
 import { applyEffects } from "../engine/effectExecutor"
 import { getNode, resolveBranch, resolveTarget } from "../engine/scenarioEngine"
 import { saveProgress } from "../engine/saveData"
@@ -16,6 +17,7 @@ type GameStore = GameState & {
   backHistory: BackHistoryEntry[]
   dialogueLog: DialogueLogEntry[]
   start: (scenario: Scenario) => void
+  startFromAct: (actId: ActStartId) => void
   restore: (state: GameState, dialogueLog: DialogueLogEntry[]) => void
   returnToTitle: () => void
   advanceDialogue: (registry: ScenarioRegistry) => void
@@ -48,6 +50,20 @@ export const useGameStore = create<GameStore>((set, get) => ({
       set({ dialogueLog: [{ type: "dialogue", speakerId: node.speakerId, text: node.text, scenarioId: state.scenarioId, sceneId: state.sceneId, nodeId: state.nodeId }] })
     }
     saveProgress(snapshotState(get()), get().dialogueLog)
+  },
+  startFromAct: (actId) => {
+    const preset = actStartPresets[actId]
+    set({
+      ...initialState,
+      scenarioId: preset.scenarioId,
+      sceneId: preset.sceneId,
+      nodeId: preset.nodeId,
+      flags: { ...preset.flags },
+      affinity: { ...preset.affinity },
+      backHistory: [],
+      dialogueLog: [],
+    })
+    saveProgress(snapshotState(get()), [])
   },
   restore: (state, dialogueLog) => {
     set({ ...initialState, ...snapshotState(state), backHistory: [], dialogueLog })
