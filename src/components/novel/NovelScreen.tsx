@@ -33,7 +33,7 @@ export function NovelScreen() {
   const back = useGameStore((store) => store.back)
   const backHistory = useGameStore((store) => store.backHistory)
   const dialogueLog = useGameStore((store) => store.dialogueLog)
-  const [pendingScenarioTransition, setPendingScenarioTransition] = useState<{ completedTitle: string; nextTitle: string } | undefined>()
+  const [pendingScenarioTransition, setPendingScenarioTransition] = useState<{ completedTitle: string; nextActLabel: string } | undefined>()
   const [isLogOpen, setIsLogOpen] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isCastOpen, setIsCastOpen] = useState(false)
@@ -93,7 +93,10 @@ export function NovelScreen() {
     if (node.type !== "dialogue") return
     if (node.next.scenarioId && node.next.scenarioId !== scenarioId) {
       const nextScenario = getScenario(scenarios, node.next.scenarioId)
-      setPendingScenarioTransition({ completedTitle: `${scenario.title} 完了`, nextTitle: nextScenario.title })
+      setPendingScenarioTransition({
+        completedTitle: `${scenario.title} 完了`,
+        nextActLabel: nextScenario.id === "prologue" ? "PROLOGUE" : `ACT ${nextScenario.id.replace("act", "")}`,
+      })
       return
     }
     advanceDialogue(scenarios)
@@ -115,7 +118,7 @@ export function NovelScreen() {
       {pendingScenarioTransition && (
         <section className="scenario-complete-screen" aria-label={`${pendingScenarioTransition.completedTitle}画面`}>
           <p>{pendingScenarioTransition.completedTitle}</p>
-          <button type="button" onClick={continueScenarioTransition}>{pendingScenarioTransition.nextTitle}へ進む</button>
+          <button type="button" onClick={continueScenarioTransition}>{pendingScenarioTransition.nextActLabel}へ進む</button>
         </section>
       )}
       <BackgroundLayer background={background} />

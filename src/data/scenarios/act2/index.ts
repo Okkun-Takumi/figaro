@@ -9,7 +9,7 @@ import { countessPlan } from "./countess-plan"
 
 export const act2 = {
   id: "act2",
-  title: "第二幕",
+  title: "ACT 2",
   initialSceneId: "countess-lament",
   scenes: {
     "countess-lament": countessLament,

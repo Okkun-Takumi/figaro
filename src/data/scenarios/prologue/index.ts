@@ -4,7 +4,7 @@ import { manorHallway } from "./hallway"
 
 export const prologue = {
   id: "prologue",
-  title: "プロローグ",
+  title: "PROLOGUE",
   initialSceneId: "arrival",
   scenes: { arrival, "manor-hallway": manorHallway },
 } satisfies Scenario
