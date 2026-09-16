@@ -12,6 +12,7 @@ const planPresentation = {
   backgroundId: "countess-bedroom",
   characters: [
     { characterId: "countess", expressionId: "neutral", position: "left" as const },
+    { characterId: "susanna", expressionId: "serious", position: "center" as const },
     { characterId: "figaro", expressionId: "serious", position: "right" as const },
   ],
 }
