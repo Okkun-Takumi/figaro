@@ -1,7 +1,7 @@
 import type { Scene } from "../../../engine/types"
 
 const presentation = {
-  backgroundId: "manor-hallway",
+  backgroundId: "wedding-room",
   characters: [
     { characterId: "cherubino", expressionId: "neutral", position: "left" as const },
     { characterId: "count", expressionId: "neutral", position: "right" as const },
@@ -18,7 +18,7 @@ const worriedPresentation = {
 
 export const cherubinoArmy = {
   id: "cherubino-army",
-  backgroundId: "manor-hallway",
+  backgroundId: "wedding-room",
   initialNodeId: "villagers-leave",
   nodes: {
     "villagers-leave": { type: "dialogue", id: "villagers-leave", text: "村人たちが去ると、フィガロはケルビーノがすっかり落ち込んでいることに気づいた。", presentation, next: { nodeId: "figaro-asks" } },

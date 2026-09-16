@@ -1,5 +1,6 @@
 import { create } from "zustand"
 import { actStartPresets, type ActStartId } from "../data/actStartPresets"
+import { scenarios } from "../data/scenarios"
 import { applyEffects } from "../engine/effectExecutor"
 import { getNode, resolveBranch, resolveTarget } from "../engine/scenarioEngine"
 import { saveProgress } from "../engine/saveData"
@@ -63,7 +64,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
       backHistory: [],
       dialogueLog: [],
     })
-    saveProgress(snapshotState(get()), [])
+    const state = get()
+    const node = getNode(scenarios, state)
+    if (node.type === "dialogue") {
+      set({ dialogueLog: [{ type: "dialogue", speakerId: node.speakerId, text: node.text, scenarioId: state.scenarioId, sceneId: state.sceneId, nodeId: state.nodeId }] })
+    }
+    saveProgress(snapshotState(get()), get().dialogueLog)
   },
   restore: (state, dialogueLog) => {
     set({ ...initialState, ...snapshotState(state), backHistory: [], dialogueLog })

@@ -1,13 +1,13 @@
 import type { Scene } from "../../../engine/types"
 
 const susannaPresentation = {
-  backgroundId: "manor-hallway",
+  backgroundId: "wedding-room",
   characters: [{ characterId: "susanna", expressionId: "worried", position: "center" as const }],
 }
 
 export const countCherubino = {
   id: "count-cherubino",
-  backgroundId: "manor-hallway",
+  backgroundId: "wedding-room",
   initialNodeId: "susanna-startles",
   nodes: {
     "susanna-startles": { type: "dialogue", id: "susanna-startles", speakerId: "susanna", text: "「え？」", presentation: susannaPresentation, next: { nodeId: "cherubino-fears" } },

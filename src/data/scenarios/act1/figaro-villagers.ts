@@ -1,7 +1,7 @@
 import type { Scene } from "../../../engine/types"
 
 const presentation = {
-  backgroundId: "manor-hallway",
+  backgroundId: "wedding-room",
   characters: [
     { characterId: "figaro", expressionId: "smile", position: "left" as const },
     { characterId: "count", expressionId: "neutral", position: "right" as const },
@@ -10,7 +10,7 @@ const presentation = {
 
 export const figaroVillagers = {
   id: "figaro-villagers",
-  backgroundId: "manor-hallway",
+  backgroundId: "wedding-room",
   initialNodeId: "figaro-calls",
   nodes: {
     "figaro-calls": { type: "dialogue", id: "figaro-calls", speakerId: "figaro", text: "「伯爵様！」", presentation, next: { nodeId: "villagers-praise" } },

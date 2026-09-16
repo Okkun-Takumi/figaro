@@ -1,7 +1,7 @@
 import type { Scene } from "../../../engine/types"
 
 const presentation = {
-  backgroundId: "manor-hallway",
+  backgroundId: "wedding-room",
   characters: [
     { characterId: "marcellina", expressionId: "neutral", position: "left" as const },
     { characterId: "bartolo", expressionId: "neutral", position: "right" as const },
@@ -10,7 +10,7 @@ const presentation = {
 
 export const marcellinaBartolo = {
   id: "marcellina-bartolo",
-  backgroundId: "manor-hallway",
+  backgroundId: "wedding-room",
   initialNodeId: "contract-entry",
   nodes: {
     "contract-entry": { type: "dialogue", id: "contract-entry", text: "フィガロがその場を離れたあと、館の廊下では別の二人が密やかに話していた。", presentation, next: { nodeId: "contract-paper" } },

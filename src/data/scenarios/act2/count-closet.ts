@@ -253,11 +253,11 @@ export const countCloset = {
       id: "count-takes-countess",
       text: "伯爵は伯爵夫人を連れ、工具を取りに部屋を出た。伯爵が戻るまで、部屋にはスザンナと、小部屋の中のケルビーノだけが残される。",
       presentation: susannaAlonePresentation,
-      next: { nodeId: "a2-06-pending" },
+      next: { nodeId: "susanna-starts-rescue" },
     },
-    "a2-06-pending": {
+    "susanna-starts-rescue": {
       type: "dialogue",
-      id: "a2-06-pending",
+      id: "susanna-starts-rescue",
       presentation: susannaAlonePresentation,
       text: "スザンナは小部屋の扉を見つめ、すぐに動き出した。",
       next: { sceneId: "cherubino-escape", nodeId: "susanna-opens-closet" },

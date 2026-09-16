@@ -202,11 +202,11 @@ export const cherubinoDisguise = {
       id: "count-knocks",
       text: "そのとき、扉の外から伯爵の声と足音が近づいてきた。ケルビーノの顔から血の気が引く。",
       presentation: worriedDisguisedPresentation,
-      next: { nodeId: "a2-05-pending" },
+      next: { nodeId: "count-arrives-at-door" },
     },
-    "a2-05-pending": {
+    "count-arrives-at-door": {
       type: "dialogue",
-      id: "a2-05-pending",
+      id: "count-arrives-at-door",
       presentation: worriedDisguisedPresentation,
       text: "伯爵の声は、もう扉のすぐ外まで来ている。",
       next: { sceneId: "count-closet", nodeId: "count-arrives" },

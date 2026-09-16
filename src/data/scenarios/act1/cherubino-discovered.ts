@@ -1,7 +1,7 @@
 import type { Scene } from "../../../engine/types"
 
 const presentation = {
-  backgroundId: "manor-hallway",
+  backgroundId: "wedding-room",
   characters: [
     { characterId: "susanna", expressionId: "worried", position: "left" as const },
     { characterId: "count", expressionId: "angry", position: "right" as const },
@@ -10,7 +10,7 @@ const presentation = {
 
 export const cherubinoDiscovered = {
   id: "cherubino-discovered",
-  backgroundId: "manor-hallway",
+  backgroundId: "wedding-room",
   initialNodeId: "count-emerges",
   nodes: {
     "count-emerges": { type: "dialogue", id: "count-emerges", speakerId: "count", text: "「何だと？」", presentation, next: { nodeId: "basilio-startles" } },
@@ -45,7 +45,7 @@ export const cherubinoDiscovered = {
     "reversal-summary": { type: "dialogue", id: "reversal-summary", text: "ここで立場が逆転した。伯爵はケルビーノの秘密を知った。しかしケルビーノも、伯爵がスザンナを誘惑している秘密を知ってしまった。伯爵にとって彼は、単なる恋に浮かれた少年ではなく、自分の秘密を知る厄介な存在になった。", presentation, next: { nodeId: "voices-outside" } },
     "voices-outside": { type: "dialogue", id: "voices-outside", speakerId: "basilio", text: "「伯爵様。誰か来ます。」", presentation: { ...presentation, characters: [{ characterId: "susanna", expressionId: "neutral", position: "left" }, { characterId: "basilio", expressionId: "surprised", position: "right" }] }, next: { nodeId: "figaro-voice" } },
     "figaro-voice": { type: "dialogue", id: "figaro-voice", text: "廊下の外から、花を持った使用人や村人たちの声が近づく。フィガロの声が響いた。『伯爵様！』", presentation, next: { nodeId: "player-wonders" } },
-    "player-wonders": { type: "dialogue", id: "player-wonders", text: "今度は何だ……？", presentation, next: { nodeId: "a1-17-pending" } },
-    "a1-17-pending": { type: "dialogue", id: "a1-17-pending", text: "扉が開き、花を抱えた人々が部屋へ入ってくる。", presentation, next: { sceneId: "figaro-villagers", nodeId: "figaro-calls" } },
+    "player-wonders": { type: "dialogue", id: "player-wonders", text: "今度は何だ……？", presentation, next: { nodeId: "villagers-enter-room" } },
+    "villagers-enter-room": { type: "dialogue", id: "villagers-enter-room", text: "扉が開き、花を抱えた人々が部屋へ入ってくる。", presentation, next: { sceneId: "figaro-villagers", nodeId: "figaro-calls" } },
   },
 } satisfies Scene
