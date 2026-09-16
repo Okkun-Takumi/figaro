@@ -3,7 +3,8 @@ import type { Scene } from "../../../engine/types"
 const presentation = {
   backgroundId: "wedding-room",
   characters: [
-    { characterId: "cherubino", expressionId: "neutral", position: "left" as const },
+    { characterId: "figaro", expressionId: "neutral", position: "left" as const },
+    { characterId: "cherubino", expressionId: "neutral", position: "center" as const },
     { characterId: "count", expressionId: "neutral", position: "right" as const },
   ],
 }
@@ -11,8 +12,18 @@ const presentation = {
 const worriedPresentation = {
   ...presentation,
   characters: [
-    { characterId: "cherubino", expressionId: "worried", position: "left" as const },
+    { characterId: "figaro", expressionId: "neutral", position: "left" as const },
+    { characterId: "cherubino", expressionId: "worried", position: "center" as const },
     { characterId: "count", expressionId: "neutral", position: "right" as const },
+  ],
+}
+
+const farewellPresentation = {
+  backgroundId: "wedding-room",
+  characters: [
+    { characterId: "figaro", expressionId: "smile", position: "left" as const },
+    { characterId: "cherubino", expressionId: "neutral", position: "center" as const },
+    { characterId: "susanna", expressionId: "worried", position: "right" as const },
   ],
 }
 
@@ -22,8 +33,8 @@ export const cherubinoArmy = {
   initialNodeId: "villagers-leave",
   nodes: {
     "villagers-leave": { type: "dialogue", id: "villagers-leave", text: "村人たちが去ると、フィガロはケルビーノがすっかり落ち込んでいることに気づいた。", presentation, next: { nodeId: "figaro-asks" } },
-    "figaro-asks": { type: "dialogue", id: "figaro-asks", speakerId: "figaro", text: "「どうした、ケルビーノ。」", presentation: { ...presentation, characters: [{ characterId: "figaro", expressionId: "neutral", position: "left" }, { characterId: "cherubino", expressionId: "neutral", position: "right" }] }, next: { nodeId: "susanna-explains" } },
-    "susanna-explains": { type: "dialogue", id: "susanna-explains", speakerId: "susanna", text: "「伯爵様に館を追い出されるのよ。」", presentation: { ...presentation, characters: [{ characterId: "susanna", expressionId: "worried", position: "left" }, { characterId: "cherubino", expressionId: "neutral", position: "right" }] }, next: { nodeId: "figaro-surprised" } },
+    "figaro-asks": { type: "dialogue", id: "figaro-asks", speakerId: "figaro", text: "「どうした、ケルビーノ。」", presentation, next: { nodeId: "susanna-explains" } },
+    "susanna-explains": { type: "dialogue", id: "susanna-explains", speakerId: "susanna", text: "「伯爵様に館を追い出されるのよ。」", presentation, next: { nodeId: "figaro-surprised" } },
     "figaro-surprised": { type: "dialogue", id: "figaro-surprised", speakerId: "figaro", text: "「今日みたいなめでたい日に？」", presentation, next: { nodeId: "cherubino-pleads" } },
     "cherubino-pleads": { type: "dialogue", id: "cherubino-pleads", speakerId: "cherubino", text: "「伯爵様……お許しください。」", presentation: worriedPresentation, next: { nodeId: "count-rebukes" } },
     "count-rebukes": { type: "dialogue", id: "count-rebukes", speakerId: "count", text: "「お前は許されるようなことをしたか？」", presentation, next: { nodeId: "susanna-defends" } },
@@ -52,14 +63,14 @@ export const cherubinoArmy = {
     "susanna-asks-delay": { type: "dialogue", id: "susanna-asks-delay", speakerId: "susanna", text: "「そうです。今日だけでも館にいさせてください。」", presentation, next: { nodeId: "count-refuses-delay" } },
     "count-refuses-delay": { type: "dialogue", id: "count-refuses-delay", speakerId: "count", text: "「だめだ。すぐに出発しろ。」", presentation, effects: [{ type: "setFlag", key: "cherubinoSentToArmy", value: true }], next: { nodeId: "cherubino-accepts" } },
     "cherubino-accepts": { type: "dialogue", id: "cherubino-accepts", speakerId: "cherubino", text: "「……分かりました。」", presentation: worriedPresentation, next: { nodeId: "figaro-comforts" } },
-    "figaro-comforts": { type: "dialogue", id: "figaro-comforts", speakerId: "figaro", text: "「おいおい。そんな顔をするなよ、少尉殿。」", presentation: { ...presentation, characters: [{ characterId: "figaro", expressionId: "smile", position: "left" }, { characterId: "cherubino", expressionId: "neutral", position: "right" }] }, next: { nodeId: "figaro-teases" } },
-    "figaro-teases": { type: "dialogue", id: "figaro-teases", speakerId: "figaro", text: "「今までみたいに、女の子の周りをひらひら飛び回る生活とはお別れだな。きれいな服も帽子も、恋のため息も終わり。」", presentation, next: { nodeId: "figaro-march" } },
-    "figaro-march": { type: "dialogue", id: "figaro-march", speakerId: "figaro", text: "「これからは軍服。肩には銃、横には剣。泥の中を行進だ。」", presentation, next: { nodeId: "player-asks-comfort" } },
-    "player-asks-comfort": { type: "dialogue", id: "player-asks-comfort", text: "慰めてるのか、それ……？", presentation, next: { nodeId: "figaro-insists" } },
-    "figaro-insists": { type: "dialogue", id: "figaro-insists", speakerId: "figaro", text: "「もちろん。」", presentation, next: { nodeId: "susanna-calls-out" } },
-    "susanna-calls-out": { type: "dialogue", id: "susanna-calls-out", speakerId: "susanna", text: "「絶対楽しんでるでしょ。」", presentation, next: { nodeId: "non-piu-title" } },
-    "non-piu-title": { type: "dialogue", id: "non-piu-title", text: "♪ Non più andrai", presentation: { ...presentation, musicId: "nonPiuAndrai" }, next: { nodeId: "act1-summary" } },
-    "act1-summary": { type: "dialogue", id: "act1-summary", text: "ACT 1 COMPLETE\n\n結婚式の朝。フィガロとスザンナは伯爵の企みを知った。フィガロは伯爵を公衆の前で追い込んだが、結婚式は延期された。マルチェリーナの契約も残っている。そしてケルビーノは、突然軍隊へ送られることになった。結婚式まではまだ遠い。", presentation, next: { nodeId: "act1-complete" } },
-    "act1-complete": { type: "dialogue", id: "act1-complete", text: "第一幕が終わる。", presentation, next: { scenarioId: "act2", sceneId: "countess-lament", nodeId: "act2-entry" } },
+    "figaro-comforts": { type: "dialogue", id: "figaro-comforts", speakerId: "figaro", text: "「おいおい。そんな顔をするなよ、少尉殿。」", presentation: farewellPresentation, next: { nodeId: "figaro-teases" } },
+    "figaro-teases": { type: "dialogue", id: "figaro-teases", speakerId: "figaro", text: "「今までみたいに、女の子の周りをひらひら飛び回る生活とはお別れだな。きれいな服も帽子も、恋のため息も終わり。」", presentation: farewellPresentation, next: { nodeId: "figaro-march" } },
+    "figaro-march": { type: "dialogue", id: "figaro-march", speakerId: "figaro", text: "「これからは軍服。肩には銃、横には剣。泥の中を行進だ。」", presentation: farewellPresentation, next: { nodeId: "player-asks-comfort" } },
+    "player-asks-comfort": { type: "dialogue", id: "player-asks-comfort", text: "慰めてるのか、それ……？", presentation: farewellPresentation, next: { nodeId: "figaro-insists" } },
+    "figaro-insists": { type: "dialogue", id: "figaro-insists", speakerId: "figaro", text: "「もちろん。」", presentation: farewellPresentation, next: { nodeId: "susanna-calls-out" } },
+    "susanna-calls-out": { type: "dialogue", id: "susanna-calls-out", speakerId: "susanna", text: "「絶対楽しんでるでしょ。」", presentation: farewellPresentation, next: { nodeId: "non-piu-title" } },
+    "non-piu-title": { type: "dialogue", id: "non-piu-title", text: "♪ Non più andrai", presentation: { ...farewellPresentation, musicId: "nonPiuAndrai" }, next: { nodeId: "act1-summary" } },
+    "act1-summary": { type: "dialogue", id: "act1-summary", text: "ACT 1 COMPLETE\n\n結婚式の朝。フィガロとスザンナは伯爵の企みを知った。フィガロは伯爵を公衆の前で追い込んだが、結婚式は延期された。マルチェリーナの契約も残っている。そしてケルビーノは、突然軍隊へ送られることになった。結婚式まではまだ遠い。", presentation: farewellPresentation, next: { nodeId: "act1-complete" } },
+    "act1-complete": { type: "dialogue", id: "act1-complete", text: "第一幕が終わる。", presentation: farewellPresentation, next: { scenarioId: "act2", sceneId: "countess-lament", nodeId: "act2-entry" } },
   },
 } satisfies Scene
