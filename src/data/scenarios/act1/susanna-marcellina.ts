@@ -1,7 +1,7 @@
 import type { Scene } from "../../../engine/types"
 
 const presentation = {
-  backgroundId: "manor-hallway",
+  backgroundId: "wedding-room",
   characters: [
     { characterId: "susanna", expressionId: "smile", position: "left" as const },
     { characterId: "marcellina", expressionId: "smug", position: "right" as const },
@@ -10,7 +10,7 @@ const presentation = {
 
 export const susannaMarcellina = {
   id: "susanna-marcellina",
-  backgroundId: "manor-hallway",
+  backgroundId: "wedding-room",
   initialNodeId: "duel-entry",
   nodes: {
     "duel-entry": { type: "dialogue", id: "duel-entry", text: "バルトロが去ると、入れ替わるようにスザンナが廊下へ現れた。マルチェリーナは、完璧な笑顔を浮かべる。", presentation, next: { nodeId: "marcellina-greeting" } },

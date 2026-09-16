@@ -233,11 +233,11 @@ export const cherubinoEscape = {
       id: "count-returning",
       text: "廊下から、伯爵と伯爵夫人の足音が近づいてくる。小部屋の中で、スザンナは静かに待った。",
       presentation: emptyBedroomPresentation,
-      next: { nodeId: "a2-07-pending" },
+      next: { nodeId: "count-and-countess-return" },
     },
-    "a2-07-pending": {
+    "count-and-countess-return": {
       type: "dialogue",
-      id: "a2-07-pending",
+      id: "count-and-countess-return",
       presentation: emptyBedroomPresentation,
       text: "扉の鍵が回る音がした。",
       next: { sceneId: "act2-finale", nodeId: "count-returns" },

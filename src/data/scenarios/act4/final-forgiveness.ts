@@ -24,7 +24,7 @@ export const finalForgiveness = {
       { id: "countess-forgiveness", text: "伯爵夫人が伯爵を赦したこと", effects: [{ type: "setFlag", key: "understandsCountessForgiveness", value: true }, { type: "changeAffinity", characterId: "countess", amount: 1 }], next: { nodeId: "countess-forgiveness-reaction" } },
       { id: "reconciliation", text: "皆が一緒に喜びへ戻れたこと", effects: [{ type: "setFlag", key: "understandsFinalReconciliation", value: true }], next: { nodeId: "reconciliation-reaction" } },
     ] },
-    "count-forgiveness-reaction": { type: "dialogue", id: "count-forgiveness-reaction", text: "伯爵は初めて、自分の権力ではなく相手の赦しを必要としている。", presentation: reveal, next: { nodeId: "final-summary" } },
+    "count-forgiveness-reaction": { type: "dialogue", id: "count-forgiveness-reaction", text: "伯爵は、これまでのように自分の立場だけでは解決できないことを悟り、伯爵夫人に赦しを求める。", presentation: reveal, next: { nodeId: "final-summary" } },
     "countess-forgiveness-reaction": { type: "dialogue", id: "countess-forgiveness-reaction", text: "伯爵夫人の静かな寛大さが、長い一日の混乱を終わらせる。", presentation: reveal, next: { nodeId: "final-summary" } },
     "reconciliation-reaction": { type: "dialogue", id: "reconciliation-reaction", text: "疑いと誤解で離れていた人々の声が、ようやく同じ喜びへ重なっていく。", presentation: reveal, next: { nodeId: "final-summary" } },
     "final-summary": { type: "dialogue", id: "final-summary", text: "長い一日が終わった。フィガロとスザンナの結婚は祝福され、伯爵と伯爵夫人は互いに向き合った。夜の庭には、ようやく笑顔と音楽が戻る。", presentation: { backgroundId: "garden-night", characters: [{ characterId: "figaro", expressionId: "smile", position: "left" }, { characterId: "susanna", expressionId: "disguise", position: "center" }, { characterId: "countess", expressionId: "disguise", position: "right" }] }, next: { nodeId: "game-complete" } },

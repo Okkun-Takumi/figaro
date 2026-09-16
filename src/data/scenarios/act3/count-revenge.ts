@@ -13,7 +13,7 @@ export const countRevenge = { id: "count-revenge", backgroundId: "great-hall", i
     { id: "status-anxiety", text: "自分の権威が通じないこと", effects: [{ type: "setFlag", key: "understandsCountStatusAnxiety", value: true }], next: { nodeId: "status-reaction" } },
   ] },
   "romantic-reaction": { type: "dialogue", id: "romantic-reaction", text: "欲しいものを拒まれたことが、伯爵の自尊心を傷つけている。", presentation: p, next: { nodeId: "revenge-rejoin" } },
-  "power-reaction": { type: "dialogue", id: "power-reaction", text: "主人である自分が召使いに出し抜かれることは、伯爵には耐えがたい。", presentation: p, next: { nodeId: "revenge-rejoin" } },
-  "status-reaction": { type: "dialogue", id: "status-reaction", text: "伯爵の怒りは恋愛だけでなく、自分の立場が揺らぐことへも向いている。", presentation: p, next: { nodeId: "revenge-rejoin" } },
+  "power-reaction": { type: "dialogue", id: "power-reaction", text: "主人である伯爵にとって、召使いのフィガロに出し抜かれることは大きな屈辱に映る。", presentation: p, next: { nodeId: "revenge-rejoin" } },
+  "status-reaction": { type: "dialogue", id: "status-reaction", text: "伯爵の怒りには、恋愛の嫉妬だけでなく、自分の立場が思いどおりにならない苛立ちもにじんでいる。", presentation: p, next: { nodeId: "revenge-rejoin" } },
   "revenge-rejoin": { type: "dialogue", id: "revenge-rejoin", speakerId: "count", text: "結婚など、そう簡単にさせるものか。契約の裁定で、あの男を追い詰めてやる。", presentation: p, next: { sceneId: "figaro-trial", nodeId: "trial-opens" } },
 } } satisfies Scene

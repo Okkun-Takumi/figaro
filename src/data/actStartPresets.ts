@@ -65,7 +65,7 @@ export const actStartPresets = {
     scenarioId: "act3",
     sceneId: "susanna-count-ruse",
     nodeId: "susanna-approaches",
-    flags: { knowsWedding: true, knowsCountsInterestInSusanna: true, figaroPlansResistance: true, knowsFigaroDebtContract: true, knowsMarcellinaWantsMarriage: true, knowsCherubinoBanished: true, cherubinoSentToArmy: true, cherubinoEscapedThroughWindow: true, figaroPubliclyPressuredCount: true, understandsCountCountermove: true },
+    flags: { knowsWedding: true, knowsCountsInterestInSusanna: true, figaroPlansResistance: true, knowsFigaroDebtContract: true, knowsMarcellinaWantsMarriage: true, knowsCherubinoBanished: true, cherubinoSentToArmy: true, cherubinoEscapedThroughWindow: true, knowsCherubinoCommissionMissingSeal: true, figaroPubliclyPressuredCount: true, understandsCountCountermove: true },
     affinity: {},
   },
   act4: {
@@ -79,6 +79,7 @@ export const actStartPresets = {
       figaroDebtMarriageThreatResolved: true,
       countReceivedGardenLetter: true,
       countMustReturnPin: true,
+      knowsCherubinoCommissionMissingSeal: true,
     },
     affinity: {},
   },

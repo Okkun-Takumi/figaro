@@ -1,7 +1,7 @@
 import type { Scene } from "../../../engine/types"
 
 const presentation = {
-  backgroundId: "manor-hallway",
+  backgroundId: "wedding-room",
   characters: [
     { characterId: "susanna", expressionId: "neutral", position: "left" as const },
     { characterId: "cherubino", expressionId: "surprised", position: "right" as const },
@@ -18,7 +18,7 @@ const flusteredPresentation = {
 
 export const cherubino = {
   id: "cherubino",
-  backgroundId: "manor-hallway",
+  backgroundId: "wedding-room",
   initialNodeId: "cherubino-entry",
   nodes: {
     "cherubino-entry": { type: "dialogue", id: "cherubino-entry", speakerId: "cherubino", text: "「スザンナ、助けてくれ！」", presentation, effects: [{ type: "setFlag", key: "knowsCherubinoIsPage", value: true }], next: { nodeId: "susanna-question" } },
@@ -44,7 +44,7 @@ export const cherubino = {
     "footsteps": { type: "dialogue", id: "footsteps", text: "そのとき、廊下から足音が近づいてくる。", presentation, next: { nodeId: "cherubino-alarm" } },
     "cherubino-alarm": { type: "dialogue", id: "cherubino-alarm", speakerId: "cherubino", text: "「……まずい」", presentation, next: { nodeId: "susanna-alarm" } },
     "susanna-alarm": { type: "dialogue", id: "susanna-alarm", speakerId: "susanna", text: "「何？」", presentation, next: { nodeId: "count-arrives" } },
-    "count-arrives": { type: "dialogue", id: "count-arrives", speakerId: "cherubino", text: "「伯爵様だ！」", presentation, next: { nodeId: "a1-11-pending" } },
-    "a1-11-pending": { type: "dialogue", id: "a1-11-pending", text: "扉の向こうに、伯爵の気配が迫る。", presentation, next: { sceneId: "count-cherubino", nodeId: "susanna-startles" } },
+    "count-arrives": { type: "dialogue", id: "count-arrives", speakerId: "cherubino", text: "「伯爵様だ！」", presentation, next: { nodeId: "count-nears-room" } },
+    "count-nears-room": { type: "dialogue", id: "count-nears-room", text: "扉の向こうに、伯爵の気配が迫る。", presentation, next: { sceneId: "count-cherubino", nodeId: "susanna-startles" } },
   },
 } satisfies Scene

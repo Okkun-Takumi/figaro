@@ -43,7 +43,7 @@ export const cherubinoSong = {
     "notice-susanna-teasing-reaction": { type: "dialogue", id: "notice-susanna-teasing-reaction", speakerId: "susanna", text: "「ほらね。歌にすると、ますます顔が赤くなる。」", presentation: allThreePresentation, next: { nodeId: "voi-rejoin" } },
     "voi-rejoin": { type: "dialogue", id: "voi-rejoin", text: "伯爵夫人は歌を褒め、ケルビーノはますます居心地が悪そうにした。", presentation: allThreePresentation, next: { nodeId: "commission-paper" } },
     "commission-paper": { type: "dialogue", id: "commission-paper", speakerId: "countess", text: "「そうだわ。伯爵があなたを軍へ送るための任官状を、ここへ持ってきて。」", presentation, next: { nodeId: "missing-seal" } },
-    "missing-seal": { type: "dialogue", id: "missing-seal", speakerId: "cherubino", text: "「これです。でも……封印がありません。伯爵様が急いで署名したので、押し忘れたのかも。」", presentation, effects: [{ type: "setFlag", key: "knowsCherubinoCommissionMissingSeal", value: true }], next: { nodeId: "a2-04-pending" } },
-    "a2-04-pending": { type: "dialogue", id: "a2-04-pending", text: "スザンナはケルビーノを見て、変装の準備を始めた。", presentation: allThreePresentation, next: { sceneId: "cherubino-disguise", nodeId: "disguise-start" } },
+    "missing-seal": { type: "dialogue", id: "missing-seal", speakerId: "cherubino", text: "「これです。伯爵様から渡された、軍の任官状です。」", presentation, next: { nodeId: "prepare-cherubino-disguise" } },
+    "prepare-cherubino-disguise": { type: "dialogue", id: "prepare-cherubino-disguise", text: "スザンナはケルビーノを見て、変装の準備を始めた。", presentation: allThreePresentation, next: { sceneId: "cherubino-disguise", nodeId: "disguise-start" } },
   },
 } satisfies Scene
