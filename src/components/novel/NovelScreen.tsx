@@ -15,6 +15,7 @@ import { DialogueBox } from "./DialogueBox"
 import { LogModal } from "./LogModal"
 import { MusicUnlockedCard } from "./MusicUnlockedCard"
 import { MenuModal } from "./MenuModal"
+import { EndingCard } from "./EndingCard"
 
 export function NovelScreen() {
   const scenarioId = useGameStore((store) => store.scenarioId)
@@ -125,7 +126,7 @@ export function NovelScreen() {
       </nav>
       {node.type === "dialogue" && (musicTrack ? <MusicUnlockedCard track={musicTrack} text={node.text} onAdvance={handleAdvance} /> : <DialogueBox speaker={speakerName} text={node.text} onAdvance={handleAdvance} />)}
       {node.type === "choice" && <ChoiceList prompt={node.prompt} choices={node.choices} onChoose={(choice) => choose(scenarios, choice)} />}
-      {node.type === "end" && <section className="end-card">{scenarioId === "act4" ? <><p>THE END</p><p>物語を最後まで見届けました。</p></> : <p>{scenario.title} 完了</p>}<button type="button" onClick={() => { if (window.confirm("最初から読み直しますか？\n\n現在の進行状況は、新しいゲームの開始状態で上書きされます。")) start(prologue) }}>もう一度読む</button></section>}
+      {node.type === "end" && (scenarioId === "act4" ? <EndingCard state={state} onReturnToTitle={() => { returnToTitle(); setSavedProgress(loadSavedProgress(scenarios)) }} onRestart={() => { if (window.confirm("最初から読み直しますか？\n\n現在の進行状況は、新しいゲームの開始状態で上書きされます。")) start(prologue) }} /> : <section className="end-card"><p>{scenario.title} 完了</p><button type="button" onClick={() => { if (window.confirm("最初から読み直しますか？\n\n現在の進行状況は、新しいゲームの開始状態で上書きされます。")) start(prologue) }}>もう一度読む</button></section>)}
       {isLogOpen && <LogModal entries={dialogueLog} onClose={() => setIsLogOpen(false)} />}
       {isMenuOpen && <MenuModal state={state} onClose={() => setIsMenuOpen(false)} onReturnToTitle={() => { returnToTitle(); setSavedProgress(loadSavedProgress(scenarios)); setIsMenuOpen(false) }} onRestart={() => { if (window.confirm("現在の自動セーブは新しいPROLOGUEの進行で上書きされます。最初から始めますか？")) { setIsMenuOpen(false); start(prologue) } }} onRestoreCode={handleRestoreCode} />}
     </main>
