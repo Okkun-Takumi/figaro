@@ -8,7 +8,7 @@ import { finalForgiveness } from "./final-forgiveness"
 
 export const act4 = {
   id: "act4",
-  title: "第四幕",
+  title: "ACT 4",
   initialSceneId: "barbarina-lost-pin",
   scenes: {
     "barbarina-lost-pin": barbarinaLostPin,
