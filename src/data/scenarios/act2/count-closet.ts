@@ -11,17 +11,16 @@ const countessCherubinoPresentation = {
 const countCountessPresentation = {
   backgroundId: "countess-bedroom",
   characters: [
-    { characterId: "count", expressionId: "neutral", position: "left" as const },
-    { characterId: "countess", expressionId: "surprised", position: "right" as const },
+    { characterId: "countess", expressionId: "surprised", position: "left" as const },
+    { characterId: "count", expressionId: "neutral", position: "right" as const },
   ],
 }
 
 const tenseTrioPresentation = {
   backgroundId: "countess-bedroom",
   characters: [
-    { characterId: "count", expressionId: "angry", position: "left" as const },
-    { characterId: "countess", expressionId: "surprised", position: "center" as const },
-    { characterId: "susanna", expressionId: "worried", position: "right" as const },
+    { characterId: "countess", expressionId: "surprised", position: "left" as const },
+    { characterId: "count", expressionId: "angry", position: "right" as const },
   ],
 }
 
@@ -58,7 +57,6 @@ export const countCloset = {
         ...countessCherubinoPresentation,
         characters: [
           { characterId: "countess", expressionId: "surprised", position: "left" },
-          { characterId: "susanna", expressionId: "worried", position: "right" },
         ],
       },
       effects: [{ type: "setFlag", key: "cherubinoHiddenInCloset", value: true }],
@@ -146,7 +144,7 @@ export const countCloset = {
       id: "count-suspicious",
       speakerId: "count",
       text: "今の音は何だ？　あの小部屋に、誰かいるのか。",
-      presentation: { ...countCountessPresentation, characters: [{ characterId: "count", expressionId: "surprised", position: "left" }, { characterId: "countess", expressionId: "surprised", position: "right" }] },
+      presentation: { ...countCountessPresentation, characters: [{ characterId: "countess", expressionId: "surprised", position: "left" }, { characterId: "count", expressionId: "surprised", position: "right" }] },
       next: { nodeId: "countess-claims-susanna" },
     },
     "countess-claims-susanna": {

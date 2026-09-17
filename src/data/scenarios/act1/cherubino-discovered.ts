@@ -13,8 +13,8 @@ const cherubinoRevealedPresentation = {
   backgroundId: "wedding-room",
   characters: [
     { characterId: "susanna", expressionId: "worried", position: "left" as const },
-    { characterId: "cherubino", expressionId: "worried", position: "center" as const },
-    { characterId: "count", expressionId: "surprised", position: "right" as const },
+    { characterId: "count", expressionId: "surprised", position: "center" as const },
+    { characterId: "cherubino", expressionId: "worried", position: "right" as const },
   ],
 }
 

@@ -1,6 +1,6 @@
 import type { Scene } from "../../../engine/types"
 
-const accusation = { backgroundId: "garden-night", characters: [{ characterId: "count", expressionId: "angry", position: "left" as const }, { characterId: "figaro", expressionId: "serious", position: "center" as const }, { characterId: "countess", expressionId: "disguise", position: "right" as const }] }
+const accusation = { backgroundId: "garden-night", characters: [{ characterId: "count", expressionId: "angry", position: "left" as const }, { characterId: "countess", expressionId: "disguise", position: "center" as const }, { characterId: "figaro", expressionId: "serious", position: "right" as const }] }
 const reveal = { backgroundId: "garden-night", characters: [{ characterId: "count", expressionId: "surprised", position: "left" as const }, { characterId: "countess", expressionId: "disguise", position: "center" as const }, { characterId: "susanna", expressionId: "disguise", position: "right" as const }] }
 
 export const finalForgiveness = {
@@ -27,7 +27,7 @@ export const finalForgiveness = {
     "count-forgiveness-reaction": { type: "dialogue", id: "count-forgiveness-reaction", text: "伯爵は、これまでのように自分の立場だけでは解決できないことを悟り、伯爵夫人に赦しを求める。", presentation: reveal, next: { nodeId: "final-summary" } },
     "countess-forgiveness-reaction": { type: "dialogue", id: "countess-forgiveness-reaction", text: "伯爵夫人の静かな寛大さが、長い一日の混乱を終わらせる。", presentation: reveal, next: { nodeId: "final-summary" } },
     "reconciliation-reaction": { type: "dialogue", id: "reconciliation-reaction", text: "疑いと誤解で離れていた人々の声が、ようやく同じ喜びへ重なっていく。", presentation: reveal, next: { nodeId: "final-summary" } },
-    "final-summary": { type: "dialogue", id: "final-summary", text: "長い一日が終わった。フィガロとスザンナの結婚は祝福され、伯爵と伯爵夫人は互いに向き合った。夜の庭には、ようやく笑顔と音楽が戻る。", presentation: { backgroundId: "garden-night", characters: [{ characterId: "figaro", expressionId: "smile", position: "left" }, { characterId: "susanna", expressionId: "disguise", position: "center" }, { characterId: "countess", expressionId: "disguise", position: "right" }] }, next: { nodeId: "game-complete" } },
+    "final-summary": { type: "dialogue", id: "final-summary", text: "長い一日が終わった。フィガロとスザンナの結婚は祝福され、伯爵と伯爵夫人は互いに向き合った。夜の庭には、ようやく笑顔と音楽が戻る。", presentation: { backgroundId: "garden-night", characters: [{ characterId: "figaro", expressionId: "smile", position: "left" }, { characterId: "countess", expressionId: "disguise", position: "center" }, { characterId: "susanna", expressionId: "disguise", position: "right" }] }, next: { nodeId: "game-complete" } },
     "game-complete": { type: "end", id: "game-complete", presentation: reveal },
   },
 } satisfies Scene
