@@ -40,6 +40,7 @@ export type NextTarget = { scenarioId?: string; sceneId?: string; nodeId: string
 export type Presentation = {
   backgroundId?: string
   musicId?: string
+  screen?: "introduction"
   characters?: CharacterAppearance[]
 }
 
