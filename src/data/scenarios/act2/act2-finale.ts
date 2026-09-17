@@ -11,9 +11,9 @@ const countCountessPresentation = {
 const countessSusannaPresentation = {
   backgroundId: "countess-bedroom",
   characters: [
-    { characterId: "countess", expressionId: "surprised", position: "left" as const },
+    { characterId: "count", expressionId: "surprised", position: "left" as const },
     { characterId: "susanna", expressionId: "neutral", position: "center" as const },
-    { characterId: "count", expressionId: "surprised", position: "right" as const },
+    { characterId: "countess", expressionId: "surprised", position: "right" as const },
   ],
 }
 
@@ -123,7 +123,7 @@ export const act2Finale = {
       id: "count-apologizes",
       speakerId: "count",
       text: "……私の思い違いだったようだ。すまなかった、ロジーナ。",
-      presentation: { ...countessSusannaPresentation, characters: [{ characterId: "countess", expressionId: "sad", position: "left" }, { characterId: "susanna", expressionId: "neutral", position: "center" }, { characterId: "count", expressionId: "neutral", position: "right" }] },
+      presentation: { ...countessSusannaPresentation, characters: [{ characterId: "count", expressionId: "neutral", position: "left" }, { characterId: "susanna", expressionId: "neutral", position: "center" }, { characterId: "countess", expressionId: "sad", position: "right" }] },
       next: { nodeId: "countess-rebukes" },
     },
     "countess-rebukes": {
@@ -131,7 +131,7 @@ export const act2Finale = {
       id: "countess-rebukes",
       speakerId: "countess",
       text: "謝れば済むことではありません。私を疑い、ここまで追い詰めたのはあなたです。",
-      presentation: { ...countessSusannaPresentation, characters: [{ characterId: "countess", expressionId: "surprised", position: "left" }, { characterId: "susanna", expressionId: "neutral", position: "center" }, { characterId: "count", expressionId: "neutral", position: "right" }] },
+      presentation: { ...countessSusannaPresentation, characters: [{ characterId: "count", expressionId: "neutral", position: "left" }, { characterId: "susanna", expressionId: "neutral", position: "center" }, { characterId: "countess", expressionId: "surprised", position: "right" }] },
       next: { nodeId: "countess-pain-branch" },
     },
     "countess-pain-branch": {
@@ -316,7 +316,7 @@ export const act2Finale = {
       id: "susanna-supports-seal",
       speakerId: "susanna",
       text: "そうです。印章がないままでは困るから、フィガロが預かっていたのです。伯爵夫人も静かにうなずく。",
-      presentation: { ...antonioPresentation, characters: [{ characterId: "susanna", expressionId: "serious", position: "left" }, { characterId: "figaro", expressionId: "serious", position: "center" }, { characterId: "count", expressionId: "surprised", position: "right" }] },
+      presentation: { ...antonioPresentation, characters: [{ characterId: "count", expressionId: "surprised", position: "left" }, { characterId: "figaro", expressionId: "serious", position: "center" }, { characterId: "susanna", expressionId: "serious", position: "right" }] },
       next: { nodeId: "count-checks-seal" },
     },
     "count-checks-seal": {

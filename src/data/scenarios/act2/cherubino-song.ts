@@ -27,7 +27,7 @@ export const cherubinoSong = {
     "susanna-teases": { type: "dialogue", id: "susanna-teases", speakerId: "susanna", text: "「さっきまであんなに慌てていたのに、奥様の前では急に静かになるのね。」", presentation: allThreePresentation, next: { nodeId: "countess-asks-song" } },
     "countess-asks-song": { type: "dialogue", id: "countess-asks-song", speakerId: "countess", text: "「ケルビーノ。あなたが書いた歌を、聞かせてくれる？」", presentation, next: { nodeId: "voi-che-sapete" } },
     "voi-che-sapete": { type: "dialogue", id: "voi-che-sapete", text: "♪ Voi che sapete", presentation: { ...presentation, musicId: "voiCheSapete" }, next: { nodeId: "song-reaction" } },
-    "song-reaction": { type: "dialogue", id: "song-reaction", text: "ケルビーノは、恋とは何なのかを伯爵夫人に尋ねるように歌った。伯爵夫人はその真剣さに、少しだけ表情をやわらげる。", presentation: { ...presentation, characters: [{ characterId: "countess", expressionId: "smile", position: "left" }, { characterId: "cherubino", expressionId: "flustered", position: "right" }] }, next: { nodeId: "voi-choice" } },
+    "song-reaction": { type: "dialogue", id: "song-reaction", text: "ケルビーノは、恋とは何なのかを伯爵夫人に尋ねるように歌った。伯爵夫人はその真剣さに、少しだけ表情をやわらげる。", presentation: { ...presentation, characters: [{ characterId: "countess", expressionId: "smile", position: "left" }, { characterId: "susanna", expressionId: "smile", position: "center" }, { characterId: "cherubino", expressionId: "flustered", position: "right" }] }, next: { nodeId: "voi-choice" } },
     "voi-choice": {
       type: "choice",
       id: "voi-choice",
