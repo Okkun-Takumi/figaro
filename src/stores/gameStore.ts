@@ -14,6 +14,10 @@ type BackHistoryEntry = {
   dialogueLog: DialogueLogEntry[]
 }
 
+function isIntroductionDialogue(node: ReturnType<typeof getNode>) {
+  return node.type === "dialogue" && node.presentation?.screen === "introduction"
+}
+
 type GameStore = GameState & {
   backHistory: BackHistoryEntry[]
   dialogueLog: DialogueLogEntry[]
@@ -47,7 +51,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     get().resolveBranches({ [scenario.id]: scenario })
     const state = get()
     const node = getNode({ [scenario.id]: scenario }, state)
-    if (node.type === "dialogue") {
+    if (node.type === "dialogue" && !isIntroductionDialogue(node)) {
       set({ dialogueLog: [{ type: "dialogue", speakerId: node.speakerId, text: node.text, scenarioId: state.scenarioId, sceneId: state.sceneId, nodeId: state.nodeId }] })
     }
     saveProgress(snapshotState(get()), get().dialogueLog)
@@ -84,13 +88,15 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const state = get()
     const node = getNode(registry, state)
     if (node.type !== "dialogue") return
-    set((current) => ({ backHistory: pushBounded(current.backHistory, { state: snapshotState(current), dialogueLog: current.dialogueLog }, BACK_HISTORY_LIMIT) }))
+    if (!isIntroductionDialogue(node)) {
+      set((current) => ({ backHistory: pushBounded(current.backHistory, { state: snapshotState(current), dialogueLog: current.dialogueLog }, BACK_HISTORY_LIMIT) }))
+    }
     const changes = applyEffects(state, node.effects)
     set({ ...changes, ...resolveTarget(registry, state, node.next) })
     get().resolveBranches(registry)
     const nextState = get()
     const nextNode = getNode(registry, nextState)
-    if (nextNode.type === "dialogue") {
+    if (nextNode.type === "dialogue" && !isIntroductionDialogue(nextNode)) {
       set((current) => ({ dialogueLog: pushBounded(current.dialogueLog, { type: "dialogue", speakerId: nextNode.speakerId, text: nextNode.text, scenarioId: nextState.scenarioId, sceneId: nextState.sceneId, nodeId: nextState.nodeId }, DIALOGUE_LOG_LIMIT) }))
     }
     saveProgress(snapshotState(get()), get().dialogueLog)

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import type { ActStartId } from "../../data/actStartPresets"
 import { characters } from "../../data/characters"
 import { backgrounds } from "../../data/backgrounds"
@@ -17,6 +17,26 @@ import { MusicUnlockedCard } from "./MusicUnlockedCard"
 import { MenuModal } from "./MenuModal"
 import { EndingCard } from "./EndingCard"
 import { CastModal } from "./CastModal"
+import { IntroductionCard } from "./IntroductionCard"
+
+const scenarioIntermissions: Record<string, { closingText: string; leadText: string }> = {
+  prologue: {
+    closingText: "結婚式を控えた、アルマヴィーヴァ伯爵の屋敷。\nここから、長い一日が始まる。",
+    leadText: "まずは、花婿と花嫁のもとへ。",
+  },
+  act1: {
+    closingText: "ケルビーノは軍隊へ。\nけれど、フィガロたちの策はまだ始まったばかり。",
+    leadText: "次の舞台は、伯爵夫人の部屋へ。",
+  },
+  act2: {
+    closingText: "次々と崩れていく計画。\nそれでも、まだ決着はつかない。\n\nそれぞれの思惑は、さらに絡み合っていく。",
+    leadText: "物語は、新たな駆け引きへ。",
+  },
+  act3: {
+    closingText: "手紙は伯爵の手に渡り、\n約束の場所は夜の庭へ。\n\n最後の仕掛けは、すでに動き始めている。",
+    leadText: "すべてが交差する、最後の夜へ。",
+  },
+}
 
 export function NovelScreen() {
   const scenarioId = useGameStore((store) => store.scenarioId)
@@ -33,7 +53,7 @@ export function NovelScreen() {
   const back = useGameStore((store) => store.back)
   const backHistory = useGameStore((store) => store.backHistory)
   const dialogueLog = useGameStore((store) => store.dialogueLog)
-  const [pendingScenarioTransition, setPendingScenarioTransition] = useState<{ completedTitle: string; nextActLabel: string } | undefined>()
+  const [pendingScenarioTransition, setPendingScenarioTransition] = useState<{ completedTitle: string; nextActLabel: string; closingText: string; leadText: string } | undefined>()
   const [isLogOpen, setIsLogOpen] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isCastOpen, setIsCastOpen] = useState(false)
@@ -42,6 +62,10 @@ export function NovelScreen() {
   const [titleRestoreMessage, setTitleRestoreMessage] = useState<string>()
   const [isActSelectOpen, setIsActSelectOpen] = useState(false)
   const [savedProgress, setSavedProgress] = useState(() => loadSavedProgress(scenarios))
+  const [endingView, setEndingView] = useState<"diagnosis" | "final">("diagnosis")
+  useEffect(() => {
+    if (scenarioId !== "act4" || nodeId !== "game-complete") setEndingView("diagnosis")
+  }, [scenarioId, nodeId])
   const restoreFromTitle = () => {
     const restored = readSaveCode(titleRestoreCode, scenarios)
     if (!restored) {
@@ -85,6 +109,8 @@ export function NovelScreen() {
   const scene = scenario.scenes[sceneId]
   const node = getNode(scenarios, state)
   const presentation = "presentation" in node ? node.presentation : undefined
+  const isIntroduction = node.type === "dialogue" && presentation?.screen === "introduction"
+  const isAct4Ending = node.type === "end" && scenarioId === "act4"
   const backgroundId = presentation?.backgroundId ?? scene.backgroundId
   const background = backgroundId ? backgrounds[backgroundId] : undefined
   const speakerName = node.type === "dialogue" && node.speakerId ? characters[node.speakerId]?.name : undefined
@@ -93,9 +119,12 @@ export function NovelScreen() {
     if (node.type !== "dialogue") return
     if (node.next.scenarioId && node.next.scenarioId !== scenarioId) {
       const nextScenario = getScenario(scenarios, node.next.scenarioId)
+      const intermission = scenarioIntermissions[scenario.id]
       setPendingScenarioTransition({
         completedTitle: `${scenario.title} 完了`,
         nextActLabel: nextScenario.id === "prologue" ? "PROLOGUE" : `ACT ${nextScenario.id.replace("act", "")}`,
+        closingText: intermission?.closingText ?? "",
+        leadText: intermission?.leadText ?? "",
       })
       return
     }
@@ -117,22 +146,27 @@ export function NovelScreen() {
     <main className={`novel-screen ${background?.className ?? "background--default"}`}>
       {pendingScenarioTransition && (
         <section className="scenario-complete-screen" aria-label={`${pendingScenarioTransition.completedTitle}画面`}>
-          <p>{pendingScenarioTransition.completedTitle}</p>
-          <button type="button" onClick={continueScenarioTransition}>{pendingScenarioTransition.nextActLabel}へ進む</button>
+          <div className="scenario-complete-screen__content">
+            <p className="scenario-complete-screen__closing">{pendingScenarioTransition.closingText}</p>
+            <p className="scenario-complete-screen__title">{pendingScenarioTransition.completedTitle}</p>
+            <p className="scenario-complete-screen__lead">{pendingScenarioTransition.leadText}</p>
+            <button type="button" onClick={continueScenarioTransition}>{pendingScenarioTransition.nextActLabel}へ進む</button>
+          </div>
         </section>
       )}
-      <BackgroundLayer background={background} />
-      <div className="novel-screen__shade" aria-hidden="true" />
-      <CharacterLayer charactersToDisplay={presentation?.characters} />
-      <nav className="game-controls" aria-label="ゲーム操作">
+      {!isIntroduction && <BackgroundLayer background={background} />}
+      {!isIntroduction && <div className="novel-screen__shade" aria-hidden="true" />}
+      {!isIntroduction && !isAct4Ending && <CharacterLayer charactersToDisplay={presentation?.characters} />}
+      {!isIntroduction && endingView !== "final" && <nav className="game-controls" aria-label="ゲーム操作">
         <button type="button" onClick={back} disabled={backHistory.length === 0 || isLogOpen || isMenuOpen || isCastOpen}>BACK</button>
         <button type="button" onClick={() => setIsLogOpen(true)} disabled={isMenuOpen || isCastOpen}>LOG</button>
         <button type="button" onClick={() => setIsCastOpen(true)} disabled={isLogOpen || isMenuOpen}>CAST</button>
         <button type="button" onClick={() => setIsMenuOpen(true)} disabled={isLogOpen || isCastOpen}>MENU</button>
-      </nav>
-      {node.type === "dialogue" && (musicTrack ? <MusicUnlockedCard track={musicTrack} text={node.text} onAdvance={handleAdvance} /> : <DialogueBox speaker={speakerName} text={node.text} onAdvance={handleAdvance} />)}
+      </nav>}
+      {isIntroduction && <IntroductionCard text={node.text} onStart={handleAdvance} />}
+      {!isIntroduction && node.type === "dialogue" && (musicTrack ? <MusicUnlockedCard track={musicTrack} text={node.text} onAdvance={handleAdvance} /> : <DialogueBox speaker={speakerName} text={node.text} onAdvance={handleAdvance} />)}
       {node.type === "choice" && <ChoiceList prompt={node.prompt} choices={node.choices} onChoose={(choice) => choose(scenarios, choice)} />}
-      {node.type === "end" && (scenarioId === "act4" ? <EndingCard state={state} onReturnToTitle={() => { returnToTitle(); setSavedProgress(loadSavedProgress(scenarios)) }} onRestart={() => { if (window.confirm("最初から読み直しますか？\n\n現在の進行状況は、新しいゲームの開始状態で上書きされます。")) start(prologue) }} /> : <section className="end-card"><p>{scenario.title} 完了</p><button type="button" onClick={() => { if (window.confirm("最初から読み直しますか？\n\n現在の進行状況は、新しいゲームの開始状態で上書きされます。")) start(prologue) }}>もう一度読む</button></section>)}
+      {node.type === "end" && (scenarioId === "act4" ? <EndingCard state={state} view={endingView} onProceedToFinal={() => setEndingView("final")} onReturnToTitle={() => { returnToTitle(); setSavedProgress(loadSavedProgress(scenarios)) }} onRestart={() => { if (window.confirm("最初から読み直しますか？\n\n現在の進行状況は、新しいゲームの開始状態で上書きされます。")) start(prologue) }} /> : <section className="end-card"><p>{scenario.title} 完了</p><button type="button" onClick={() => { if (window.confirm("最初から読み直しますか？\n\n現在の進行状況は、新しいゲームの開始状態で上書きされます。")) start(prologue) }}>もう一度読む</button></section>)}
       {isLogOpen && <LogModal entries={dialogueLog} onClose={() => setIsLogOpen(false)} />}
       {isCastOpen && <CastModal state={state} log={dialogueLog} currentCharacterIds={presentation?.characters?.map((character) => character.characterId) ?? []} onClose={() => setIsCastOpen(false)} />}
       {isMenuOpen && <MenuModal state={state} onClose={() => setIsMenuOpen(false)} onReturnToTitle={() => { returnToTitle(); setSavedProgress(loadSavedProgress(scenarios)); setIsMenuOpen(false) }} onRestart={() => { if (window.confirm("現在の自動セーブは新しいPROLOGUEの進行で上書きされます。最初から始めますか？")) { setIsMenuOpen(false); start(prologue) } }} onRestoreCode={handleRestoreCode} />}
